@@ -1,0 +1,32 @@
+ts_node:
+  title:
+    ja: TypeScript / Node.js 課題
+  task_items:
+    typescript_quiz:
+      title:
+        ja: TypeScriptの型を修正しよう
+    npm_build_command:
+      title:
+        ja: npm scripts を使ってみよう
+    promise_async:
+      title:
+        ja: Promise と async/await の記法について理解しよう
+    http_server:
+      title:
+        ja: HTTP サーバーを実装してみよう
+  check_items:
+    check_env:
+      title:
+        ja: タスクに必要な環境が整っている
+    typescript_quiz:
+      title:
+        ja: TypeScriptの型が正しく修正されている
+    console_log_order:
+      title:
+        ja: console.log の順序が正しく回答されている
+    npm_build_command:
+      title:
+        ja: 指定された npm scripts が実行できる
+    http_server:
+      title:
+        ja: サーバーが実装されている

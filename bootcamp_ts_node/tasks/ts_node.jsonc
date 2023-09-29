@@ -1,0 +1,211 @@
+{
+  "id": "ARD5qY93JhGC0zqQ1iRe_", // bootcamp_ts_node
+  "situationId": "TtC8-bEVewTqIKtNZgu_O",
+  "type": {
+    "value": "PRACTICAL",
+    "category": "feature_backend"
+  },
+  "title": "ts_node.title",
+  "isOnboardingTask": false,
+  "translationFiles": [
+    "../../common/locales/translations.yml",
+    "./ts_node/locales/translations.yml"
+  ],
+  "keywords": [
+    "common.keywords.web_engineer_course",
+    "common.keywords.typescript",
+    "common.keywords.nodejs"
+  ],
+  "explainer": "./ts_node/explainer",
+  "menu": {
+    "overviewItem": "./ts_node/overview",
+    "setUpItem": "./ts_node/setup",
+    "specItems": [],
+    "taskItems": [
+      {
+        "anchorLink": "typescript-quiz",
+        "description": "./ts_node/task_items/typescript_quiz",
+        "title": "ts_node.task_items.typescript_quiz.title"
+      },
+      {
+        "anchorLink": "promise-and-async",
+        "description": "./ts_node/task_items/promise_async",
+        "title": "ts_node.task_items.promise_async.title"
+      },
+      {
+        "anchorLink": "npm-build-command",
+        "description": "./ts_node/task_items/npm_build_command",
+        "title": "ts_node.task_items.npm_build_command.title"
+      },
+      {
+        "anchorLink": "http-server",
+        "description": "./ts_node/task_items/http_server",
+        "title": "ts_node.task_items.http_server.title"
+      }
+    ]
+  },
+  "checkItems": [
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "Sq-GHClUV_c-V8AoBv6Pn",
+          "commandLine": "progate diagnose",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "ts_node.check_items.check_env.title",
+      "id": "J9JHQ03ZCo11ZIwwJ1qVC"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "ExweGwA4MOw1OUB69i0O9",
+          "commandLine": "npx tsc --noEmit ./src/quiz/01.ts",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        },
+        {
+          "id": "cj8RE8hbNiIWP2dJTfqY6",
+          "commandLine": "npx tsc --noEmit ./src/quiz/02.ts",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        },
+        {
+          "id": "LNaBWVmxgnez1QmjLPQAD",
+          "commandLine": "npx tsc --noEmit ./src/quiz/03.ts",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        },
+        {
+          "id": "-ZJlVd2rmkeEdO63HHwCn",
+          "commandLine": "npx eslint ./src/quiz/*.ts",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "ts_node.check_items.typescript_quiz.title",
+      "id": "vReN9SrGJO5lS4zLbR1X6"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "Z6dFpVlgH1f4oiwJvmD-1",
+          "commandLine": "node --test ./.progate/console_log_order_test.js",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "ts_node.check_items.console_log_order.title",
+      "id": "hKAuMnmdZBwCBcHujVJ-_"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "DpujZwLnanVEhicTQy4_4",
+          "commandLine": "npm run build",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        },
+        {
+          "id": "y1rBHnkrkPxNsv4Q1x_lw",
+          "commandLine": "npm run format:fix",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        },
+        {
+          "id": "n_Vu9v-rn8N8N9DOwfShf",
+          "commandLine": "npx prettier --check src/**/*.ts",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "ts_node.check_items.npm_build_command.title",
+      "id": "z1dufa01AsRJiHFpNr8p9"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "NEVSId0ccBFVbxHlaMDRs",
+          "commandLine": "node --test ./.progate/server_test.js",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "ts_node.check_items.http_server.title",
+      "id": "RUcDDn9EQHThtIa8OHP6M"
+    }
+  ],
+  "taskNoteAdviceItems": [
+    {
+      "id": "h_5UfcEgI0onBHQl6wyQG",
+      "title": "common.pull_request.advice_items.description.title",
+      "description": "../../common/advices/pull_request/description"
+    },
+    {
+      "id": "5hNNAgitcGi-zbaRkFCzy",
+      "title": "common.pull_request.advice_items.objective.title",
+      "description": "../../common/advices/pull_request/objective"
+    },
+    {
+      "id": "RCCLbjaiChLPVZNTzn08O",
+      "title": "common.pull_request.advice_items.change.title",
+      "description": "../../common/advices/pull_request/change"
+    },
+    {
+      "id": "GwqDgN5-veXQb3PsZERLM",
+      "title": "common.pull_request.advice_items.other.title",
+      "description": "../../common/advices/pull_request/other"
+    }
+  ],
+  "prerequisiteKnowledge": {
+    "accessLimitedMarkdown": "./ts_node/prerequisite_knowledge/access_limited",
+    "additionalMarkdown": "./ts_node/prerequisite_knowledge/additional",
+    "taskIds": [
+      "d3-ZDRn0Wc8RVM87dFZwT", // commit
+      "oaAYBAsivdt4XpERL69l1", // branch
+      "wS78m5a3nvSb97TZOlxer", // push
+      "_z2u45qMAiAoBj8qo5uDH" // ts_lint_and_format
+    ]
+  },
+  "defaultVisibilities": [
+    {
+      "locale": "ja",
+      "development": true,
+      "staging": true,
+      "production": true
+    }
+  ],
+  "arielOption": {
+    "setUpCommands": [
+      {
+        "commandLine": "npm clean-install"
+      }
+    ]
+  }
+}
