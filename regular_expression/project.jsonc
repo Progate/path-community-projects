@@ -1,0 +1,12 @@
+{
+  "situations": [
+    {
+      "generationConfig": {
+        "flags": ["SITUATION=REGULAR_EXPRESSION_PRACTICE"]
+      },
+      "id": "XTwFMB96qe3ePOO3C1XqW",
+      "rootDirName": "regular_expression",
+      "translationFile": "./tasks/regular_expression_practice/locales/translations.yml"
+    }
+  ]
+}

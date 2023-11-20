@@ -1,0 +1,27 @@
+{
+  "scripts": {
+    "build": "tsc",
+    "lint:fix": "eslint 'src/**/*.ts' --fix",
+    "format:fix": "prettier --write 'src/**/*.ts'",
+    "test:is_valid_email": "jest is_valid_email.test.ts",
+    "test:is_english_phrase": "jest is_english_phrase.test.ts",
+    "test:is_valid_url": "jest is_valid_url.test.ts",
+    "test:is_image_file": "jest is_image_file.test.ts"
+  },
+  "dependencies": {
+    "@types/node": "18.11.19",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-node": "^11.1.0",
+    "prettier": "^2.7.1",
+    "typescript": "5.0.2"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1"
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "id": "RdIc37af3bWhmlBnOgJdA",
+  "situationId": "XTwFMB96qe3ePOO3C1XqW",
+  "type": {
+    "value": "COMMUNITY",
+    "category": "community"
+  },
+  "title": "regular_expression_practice.title",
+  "translationFiles": [
+    "../../common/locales/translations.yml",
+    "./regular_expression_practice/locales/translations.yml"
+  ],
+  "explainer": "./regular_expression_practice/explainer",
+  "menu": {
+    "overviewItem": "./regular_expression_practice/overview",
+    "setUpItem": "./regular_expression_practice/setup",
+    "specItems": [],
+    "taskItems": [
+      {
+        "anchorLink": "is-valid-email",
+        "description": "./regular_expression_practice/task_items/is_valid_email",
+        "title": "regular_expression_practice.task_items.is_valid_email.title"
+      },
+      {
+        "anchorLink": "is-english-phrase",
+        "description": "./regular_expression_practice/task_items/is_english_phrase",
+        "title": "regular_expression_practice.task_items.is_english_phrase.title"
+      },
+      {
+        "anchorLink": "is-valid-url",
+        "description": "./regular_expression_practice/task_items/is_valid_url",
+        "title": "regular_expression_practice.task_items.is_valid_url.title"
+      },
+      {
+        "anchorLink": "is-image-file",
+        "description": "./regular_expression_practice/task_items/is_image_file",
+        "title": "regular_expression_practice.task_items.is_image_file.title"
+      }
+    ]
+  },
+  "checkItems": [
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "gEfRJmUOQFb95OWXAeSXr",
+          "commandLine": "progate diagnose",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "common.check_items.check_env.title",
+      "id": "B8eGVctt4YkOmkXFIIlM0"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "gEfRJgjeQFb95OWXAeSXr",
+          "commandLine": "npm run test:is_valid_email",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "regular_expression_practice.check_items.is_valid_email.title",
+      "id": "B8eGVctt4YkOmkXdkr920"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "TcTdEB_180ZadjLR0OLLS",
+          "commandLine": "npm run test:is_english_phrase",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "regular_expression_practice.check_items.is_english_phrase.title",
+      "id": "HTmrPK-kNL9ZOaMoCH4vB"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "vLISfZYt2dBPXtKp-v7WP",
+          "commandLine": "npm run test:is_valid_url",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "regular_expression_practice.check_items.is_valid_url.title",
+      "id": "RpbszFtAARn4A5N4FbrkU"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "gwtF72MVYOrOTyg9bmweU",
+          "commandLine": "npm run test:is_image_file",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "regular_expression_practice.check_items.is_image_file.title",
+      "id": "HK43Z11w8uecovCL7viFX"
+    }
+  ],
+  "taskNoteAdviceItems": [
+    {
+      "id": "3cSrr09LtVKEbCzT23aaq",
+      "title": "common.pull_request.advice_items.description.title",
+      "description": "../../common/advices/pull_request/description"
+    },
+    {
+      "id": "WIBlNZutFhMPcQqJUgxfR",
+      "title": "common.pull_request.advice_items.objective.title",
+      "description": "../../common/advices/pull_request/objective"
+    },
+    {
+      "id": "G_nGQ6u13H5fdo7Tvz_AI",
+      "title": "common.pull_request.advice_items.change.title",
+      "description": "../../common/advices/pull_request/change"
+    },
+    {
+      "id": "ip8HsN5xMpe1mzA6AFcQy",
+      "title": "common.pull_request.advice_items.other.title",
+      "description": "../../common/advices/pull_request/other"
+    }
+  ],
+  "lifecycleStages": {
+    "development": "active",
+    "staging": "active",
+    "production": "draft"
+  },
+  "arielOption": {
+    "setUpCommands": [
+      {
+        "commandLine": "npm clean-install"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+regular_expression_practice:
+  title:
+    ja: 正規表現を書いてみよう
+  task_items:
+    is_valid_email:
+      title:
+        ja: メールアドレスとして正しいかチェックしてみよう
+    is_english_phrase:
+      title:
+        ja: 正しい英文かどうかチェックしてみよう
+    is_valid_url:
+      title:
+        ja: 正しい URL かどうかチェックしてみよう
+    is_image_file:
+      title:
+        ja: 画像のファイル名として正しいかチェックしてみよう
+  check_items:
+    is_valid_email:
+      title:
+        ja: 正しいメールアドレスかチェックできる
+    is_english_phrase:
+      title:
+        ja: 正しい英文かチェックできる
+    is_valid_url:
+      title:
+        ja: 正しい URL かチェックできる
+    is_image_file:
+      title:
+        ja: 正しい画像のファイル名かチェックできる
