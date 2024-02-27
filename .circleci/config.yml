@@ -1,0 +1,27 @@
+version: 2.1
+
+orbs:
+  advanced-checkout: vsco/advanced-checkout@1.1.0
+
+jobs:
+  test-contents:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: medium
+    steps:
+      - advanced-checkout/shallow-checkout:
+          fetch_submodules: true
+      - run:
+          name: Pull Ariel Docker Image
+          command: docker pull progate/ariel:latest
+      - run:
+          name: Run Contents Test
+          command: |
+            docker run -v ./:/project progate/ariel:latest \
+              /project -p helpfeel_app
+
+
+workflows:
+  test-contents-workflow:
+    jobs:
+      - test-contents
