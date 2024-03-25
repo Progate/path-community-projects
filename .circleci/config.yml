@@ -12,13 +12,79 @@ jobs:
       - advanced-checkout/shallow-checkout:
           fetch_submodules: true
       - run:
+          name: Get Updated Files
+          command: |
+            # Fetch the BASE_BRANCH, which is the target branch of the open PR for the current branch 
+            BASE_BRANCH=$(curl -s \
+              -H "Authorization: token ${GITHUB_PERSONAL_ACCESS_TOKEN}" \
+              "https://api.github.com/repos/Progate/path/pulls?head=Progate:${CIRCLE_BRANCH}&state=open" \
+              | jq -r '.[0].base.ref')
+            
+            if [ "$BASE_BRANCH" = "null" ]; then
+              echo "No open PR found for branch $CIRCLE_BRANCH"
+              echo "It seems that this script is being executed before the creation of the PR. If that's the case, please retry after creating the PR."
+              exit 1
+            else
+              echo "Open PR found for branch $CIRCLE_BRANCH, target branch: $BASE_BRANCH"
+            fi
+
+            # Fetch the base branch explicitly, since previous checkout step only fetches the commit for the PR
+            git fetch origin $BASE_BRANCH:$BASE_BRANCH
+
+            CURRENT_COMMIT_HASH=$CIRCLE_SHA1
+            git checkout $CURRENT_COMMIT_HASH
+            
+            echo "Searching for changes between $BASE_BRANCH and $CURRENT_COMMIT_HASH"
+            COMMON_ANCESTOR_COMMIT_HASH=$(git merge-base $BASE_BRANCH $CURRENT_COMMIT_HASH)
+
+            # check if head is the merge commit or first commit
+            if [ $COMMON_ANCESTOR_COMMIT_HASH = $CURRENT_COMMIT_HASH ]; then
+              echo "No changes detected between $BASE_BRANCH and $CURRENT_COMMIT_HASH"
+              COMMON_ANCESTOR_COMMIT_HASH=$(git rev-parse $HEAD~1 2>/dev/null || echo "4b825dc642cb6eb9a060e54bf8d69288fbee4904")
+            fi
+            
+            # Determine the files that changed between the common ancestor and head revision
+            # We are only interested in the changes introduced in the PR, so changes in the target branch are not considered here.
+            CHANGED_FILES=$(git diff --name-only $COMMON_ANCESTOR_COMMIT_HASH $CURRENT_COMMIT_HASH)
+            echo "CHANGED_FILES: $CHANGED_FILES"
+            echo "$CHANGED_FILES" > changed_files.txt
+      - run:
+          name: Get Project Names from Changed Files
+          command: |
+            # changed file paths should be <project_name>/... or .circleci/...
+            # extract project names from changed file paths (if .circleci/... is changed, we need to run all tests)
+            if [ ! -f changed_files.txt ]; then
+              echo "changed_files.txt not found"
+              exit 1
+            fi
+
+            # check if .circleci/... is changed
+            if [ $(cat changed_files.txt | grep -E '^\.circleci/' | wc -l) -gt 0 ]; then
+              echo ".circleci/... is changed, running all tests"
+              PROJECT_NAMES=""
+            else
+              PROJECT_NAMES=$(cat changed_files.txt | tr ',' '\n' | grep -E '^[^.].+' | cut -d '/' -f 1 | sort -u | tr '\n' ',' | sed 's/,$//')
+              # filter out project names that do not have <project_name>/project.jsonc file
+              PROJECT_NAMES=$(echo $PROJECT_NAMES | tr ',' '\n' | while read project; do if [ -f $project/project.jsonc ]; then echo $project; fi; done | tr '\n' ',' | sed 's/,$//')
+              if [ -z "$PROJECT_NAMES" ]; then
+                echo "No project files are changed, skipping contents test"
+                circleci-agent step halt
+                exit 0
+            fi
+
+            echo "PROJECT_NAMES: $PROJECT_NAMES"
+            echo "export PROJECT_NAMES=$PROJECT_NAMES" >> $BASH_ENV
+      - run:
           name: Pull Ariel Docker Image
-          command: docker pull progate/ariel:latest
+          command: docker pull progate/ariel:latest      
       - run:
           name: Run Contents Test
           command: |
-            docker run -v ./:/project progate/ariel:latest \
-              /project -p helpfeel_app
+            if [ -z "$PROJECT_NAMES" ]; then
+              docker run -v ./:/project progate/ariel:latest /project
+            else
+              docker run -v ./:/project progate/ariel:latest /project -p $PROJECT_NAMES
+            fi
 
 
 workflows:
