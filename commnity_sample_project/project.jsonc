@@ -1,0 +1,14 @@
+{
+  "situations": [
+    {
+      "generationConfig": {
+        "flags": [
+          "SITUATION=SAMLE_SITUATION"
+        ]
+      },
+      "id": "AAAAAAAAAAAAAAAAAA",
+      "rootDirName": "project_name",
+      "translationFile": "./tasks/sample/locales/translations.yml"
+    }
+  ]
+}

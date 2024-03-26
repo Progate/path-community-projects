@@ -1,25 +1,25 @@
 {
-  "id": "8ybBQYEXl73ajnNRGc-E0",
-  "situationId": "W5HRkGVjRsa8fzXi53YOU",
+  "id": "XXXXXXXXXXXXXXXXXXx",
+  "situationId": "AAAAAAAAAAAAAAAAAA",
   "type": {
     "value": "PRACTICAL",
     "category": ["feature_backend"]
   },
-  "title": "isucon_pre_conference_lecture.title",
+  "title": "sample.title",
   "translationFiles": [
     "../../common/locales/translations.yml",
-    "./isucon_pre_conference_lecture/locales/translations.yml"
+    "./sample/locales/translations.yml"
   ],
-  "explainer": "./isucon_pre_conference_lecture/explainer",
+  "explainer": "./sample/explainer",
   "menu": {
-    "overviewItem": "./isucon_pre_conference_lecture/overview",
-    "setUpItem": "./isucon_pre_conference_lecture/setup",
+    "overviewItem": "./sample/overview",
+    "setUpItem": "./sample/setup",
     "specItems": [],
     "taskItems": [
       {
         "anchorLink": "http-server",
-        "description": "./isucon_pre_conference_lecture/task_items/isucon_pre_conference_lecture",
-        "title": "isucon_pre_conference_lecture.task_items.isucon_pre_conference_lecture.title"
+        "description": "./sample/task_items/sample",
+        "title": "sample.task_items.sample.title"
       }
     ]
   },
@@ -36,7 +36,7 @@
           }
         }
       ],
-      "description": "isucon_pre_conference_lecture.check_items.check_env.title",
+      "description": "sample.check_items.check_env.title",
       "id": "O9d7pL1kZYd49wqhZN8YU"
     },
     {
@@ -51,7 +51,7 @@
           }
         }
       ],
-      "description": "isucon_pre_conference_lecture.check_items.isucon_pre_conference_lecture.title",
+      "description": "sample.check_items.sample.title",
       "id": "Wqkjiegy8kFQwIeqhRq3L"
     }
   ],
@@ -77,9 +77,6 @@
       "description": "../../common/advices/pull_request/other"
     }
   ],
-  "prerequisiteKnowledge": {
-    "additionalMarkdown": "./isucon_pre_conference_lecture/prerequisite_knowledge/additional"
-  },
   "lifecycleStages": {
     "development": "active",
     "staging": "draft",
@@ -96,8 +93,8 @@
     "skip": true
   },
   "organization": {
-    "type": "official",
-    "name": "common.organization.official"
+    "type": "community",
+    "name": "sample.organization.community"
   },
   "recommendTaskIds": [
     "aapC5avVjKUOCKVuyDdWD", // implement_vending_machine

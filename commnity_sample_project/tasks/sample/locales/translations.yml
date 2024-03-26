@@ -1,0 +1,17 @@
+sample:
+  title:
+    ja: HTTP サーバーを実装してみよう
+  task_items:
+    http_server:
+      title:
+        ja: HTTP サーバーを実装してみよう
+  check_items:
+    check_env:
+      title:
+        ja: タスクに必要な環境が整っている
+    http_server:
+      title:
+        ja: サーバーが実装されている
+  organization:
+    community:
+      ja: Progateコミュニティ
