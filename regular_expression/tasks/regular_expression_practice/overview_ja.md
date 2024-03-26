@@ -21,5 +21,5 @@
 
 ## このタスクに貢献してくれたコミュニティメンバー
 
-- [yotu](https://twitter.com/ulxsth) さん
-- [haru](#) さん
+- [Yotu](https://twitter.com/ulxsth) さん
+- [Haru](https://twitter.com/haru_u_de) さん
