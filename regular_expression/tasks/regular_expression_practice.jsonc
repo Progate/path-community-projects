@@ -2,8 +2,8 @@
   "id": "RdIc37af3bWhmlBnOgJdA",
   "situationId": "XTwFMB96qe3ePOO3C1XqW",
   "type": {
-    "value": "COMMUNITY",
-    "category": "community"
+    "value": "STUDY",
+    "category": ["javascript_node_js"]
   },
   "title": "regular_expression_practice.title",
   "translationFiles": [
@@ -140,7 +140,7 @@
   "lifecycleStages": {
     "development": "active",
     "staging": "active",
-    "production": "draft"
+    "production": "active"
   },
   "arielOption": {
     "setUpCommands": [
@@ -148,5 +148,18 @@
         "commandLine": "npm clean-install"
       }
     ]
-  }
+  },
+  "organization": {
+    "type": "community",
+    "name": "common.organization.community"
+  },
+  "recommendTaskIds": [
+    "cgxnSbG7SuIkkt1vEeHd4", // expand_notation
+    "-mcoAs13Mi-GdQ4pH7I6S" // reverse_polish_notation_calculator
+  ],
+  "relatedCourseIds": [
+    "EWstF_vBI3bxARNm7E9bw", // node_js
+    "TEopkKknAduyDmK3X0bpq", // typescript
+    "sTotPLtU8VPpMH4-cBAHr" // algorithm_and_data_structure
+  ]
 }

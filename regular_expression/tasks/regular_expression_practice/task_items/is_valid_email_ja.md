@@ -1,6 +1,6 @@
 # メールアドレスとして正しいかチェックしてみよう
 
-引数にメールアドレスを受け取る関数 `isValidEmail` を定義してください。
+ここでは、渡された文字列がメールアドレスとして正しいかチェックする関数 `isValidEmail` を定義します。
 
 コードは `src/is_valid_email.ts` にあります。
 
@@ -13,9 +13,9 @@
     - 例：`testexample.com`
 3. ドメインが欠けている場合、`false` を返す
     - 例：`test@`
-4. トップレベルドメイン (TLD) が1文字だけの場合、`false` を返す
+4. トップレベルドメイン (TLD) が 1 文字だけの場合、`false` を返す
     - 例：`test@example.c`
-5. TLDが4文字以上の場合、falseを返す
+5. TLD が 4 文字以上の場合、false を返す
     - 例：`test@example.communi`
 6. メールアドレスに無効な文字が含まれている場合、`false` を返す
     - 例：`test@exa*mple.com`
