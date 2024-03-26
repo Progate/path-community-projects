@@ -1,0 +1,108 @@
+{
+  "id": "8ybBQYEXl73ajnNRGc-E0",
+  "situationId": "W5HRkGVjRsa8fzXi53YOU",
+  "type": {
+    "value": "PRACTICAL",
+    "category": ["feature_backend"]
+  },
+  "title": "isucon_pre_conference_lecture.title",
+  "translationFiles": [
+    "../../common/locales/translations.yml",
+    "./isucon_pre_conference_lecture/locales/translations.yml"
+  ],
+  "explainer": "./isucon_pre_conference_lecture/explainer",
+  "menu": {
+    "overviewItem": "./isucon_pre_conference_lecture/overview",
+    "setUpItem": "./isucon_pre_conference_lecture/setup",
+    "specItems": [],
+    "taskItems": [
+      {
+        "anchorLink": "http-server",
+        "description": "./isucon_pre_conference_lecture/task_items/isucon_pre_conference_lecture",
+        "title": "isucon_pre_conference_lecture.task_items.isucon_pre_conference_lecture.title"
+      }
+    ]
+  },
+  "checkItems": [
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "dBC8Uo3bc7GUyTBJmXzPX",
+          "commandLine": "progate diagnose",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "isucon_pre_conference_lecture.check_items.check_env.title",
+      "id": "O9d7pL1kZYd49wqhZN8YU"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "mdW0z0_8gE5s7HSu4ae8i",
+          "commandLine": "node --test ./.progate/server_test.js",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "isucon_pre_conference_lecture.check_items.isucon_pre_conference_lecture.title",
+      "id": "Wqkjiegy8kFQwIeqhRq3L"
+    }
+  ],
+  "taskNoteAdviceItems": [
+    {
+      "id": "SfHVXnAnpk6NQGGjYckYp",
+      "title": "common.pull_request.advice_items.description.title",
+      "description": "../../common/advices/pull_request/description"
+    },
+    {
+      "id": "zfxLIDAhYcY44uXbooQtf",
+      "title": "common.pull_request.advice_items.objective.title",
+      "description": "../../common/advices/pull_request/objective"
+    },
+    {
+      "id": "Q8MZlulFC0zMosej8qELX",
+      "title": "common.pull_request.advice_items.change.title",
+      "description": "../../common/advices/pull_request/change"
+    },
+    {
+      "id": "EO49vnn-pCp71GGEOTLlF",
+      "title": "common.pull_request.advice_items.other.title",
+      "description": "../../common/advices/pull_request/other"
+    }
+  ],
+  "prerequisiteKnowledge": {
+    "additionalMarkdown": "./isucon_pre_conference_lecture/prerequisite_knowledge/additional"
+  },
+  "lifecycleStages": {
+    "development": "active",
+    "staging": "active",
+    "production": "active"
+  },
+  "arielOption": {
+    "setUpCommands": [
+      {
+        "commandLine": "npm clean-install && npm run build"
+      }
+    ]
+  },
+  "organization": {
+    "type": "official",
+    "name": "common.organization.official"
+  },
+  "recommendTaskIds": [
+    "aapC5avVjKUOCKVuyDdWD", // implement_vending_machine
+    "xs9OUOj2UpLDdfbXkZVRQ", // exam_results_total_top_results
+    "Jlt0EJaw-0zhZQGFBYmV3" //	fix_signin_page_text
+  ],
+  "relatedCourseIds": [
+    "EWstF_vBI3bxARNm7E9bw", // node_js
+    "TEopkKknAduyDmK3X0bpq" // typescript
+  ]
+}
