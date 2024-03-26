@@ -1,0 +1,108 @@
+{
+  "id": "XXXXXXXXXXXXXXXXXXx",
+  "situationId": "AAAAAAAAAAAAAAAAAA",
+  "type": {
+    "value": "PRACTICAL",
+    "category": ["feature_backend"]
+  },
+  "title": "sample.title",
+  "translationFiles": [
+    "../../common/locales/translations.yml",
+    "./sample/locales/translations.yml"
+  ],
+  "explainer": "./sample/explainer",
+  "menu": {
+    "overviewItem": "./sample/overview",
+    "setUpItem": "./sample/setup",
+    "specItems": [],
+    "taskItems": [
+      {
+        "anchorLink": "http-server",
+        "description": "./sample/task_items/sample",
+        "title": "sample.task_items.sample.title"
+      }
+    ]
+  },
+  "checkItems": [
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "dBC8Uo3bc7GUyTBJmXzPX",
+          "commandLine": "progate diagnose",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "sample.check_items.check_env.title",
+      "id": "O9d7pL1kZYd49wqhZN8YU"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "mdW0z0_8gE5s7HSu4ae8i",
+          "commandLine": "node --test ./.progate/server_test.js",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": false,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "sample.check_items.sample.title",
+      "id": "Wqkjiegy8kFQwIeqhRq3L"
+    }
+  ],
+  "taskNoteAdviceItems": [
+    {
+      "id": "SfHVXnAnpk6NQGGjYckYp",
+      "title": "common.pull_request.advice_items.description.title",
+      "description": "../../common/advices/pull_request/description"
+    },
+    {
+      "id": "zfxLIDAhYcY44uXbooQtf",
+      "title": "common.pull_request.advice_items.objective.title",
+      "description": "../../common/advices/pull_request/objective"
+    },
+    {
+      "id": "Q8MZlulFC0zMosej8qELX",
+      "title": "common.pull_request.advice_items.change.title",
+      "description": "../../common/advices/pull_request/change"
+    },
+    {
+      "id": "EO49vnn-pCp71GGEOTLlF",
+      "title": "common.pull_request.advice_items.other.title",
+      "description": "../../common/advices/pull_request/other"
+    }
+  ],
+  "lifecycleStages": {
+    "development": "active",
+    "staging": "draft",
+    "production": "draft"
+  },
+  // "arielOption": {
+  //   "setUpCommands": [
+  //     {
+  //       "commandLine": "npm clean-install && npm run build"
+  //     }
+  //   ]
+  // },
+  "arielOption": {
+    "skip": true
+  },
+  "organization": {
+    "type": "community",
+    "name": "sample.organization.community"
+  },
+  "recommendTaskIds": [
+    "aapC5avVjKUOCKVuyDdWD", // implement_vending_machine
+    "xs9OUOj2UpLDdfbXkZVRQ", // exam_results_total_top_results
+    "Jlt0EJaw-0zhZQGFBYmV3" //	fix_signin_page_text
+  ],
+  "relatedCourseIds": [
+    "EWstF_vBI3bxARNm7E9bw", // node_js
+    "TEopkKknAduyDmK3X0bpq" // typescript
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "situations": [
+    {
+      "generationConfig": {
+        "flags": [
+          "SITUATION=ISUCON_PRE_CONFERENCE_LECTURE"
+        ]
+      },
+      "id": "W5HRkGVjRsa8fzXi53YOU",
+      "rootDirName": "isucon_pre_conference_lecture",
+      "translationFile": "./tasks/isucon_pre_conference_lecture/locales/translations.yml"
+    }
+  ]
+}
