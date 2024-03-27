@@ -68,6 +68,7 @@ jobs:
                 echo "No project files are changed, skipping contents test"
                 circleci-agent step halt
                 exit 0
+              fi
             fi
 
             echo "PROJECT_NAMES: $PROJECT_NAMES"
