@@ -33,6 +33,7 @@ jobs:
             git fetch origin $BASE_BRANCH:$BASE_BRANCH
 
             CURRENT_COMMIT_HASH=$CIRCLE_SHA1
+            echo "Checking out $CURRENT_COMMIT_HASH"
             git checkout $CURRENT_COMMIT_HASH
             
             echo "Searching for changes between $BASE_BRANCH and $CURRENT_COMMIT_HASH"
