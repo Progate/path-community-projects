@@ -29,7 +29,7 @@ jobs:
             fi
 
             # Fetch the base branch explicitly, since previous checkout step only fetches the commit for the PR
-            git fetch origin $BASE_BRANCH
+            git fetch origin $BASE_BRANCH:$BASE_BRANCH
 
             CURRENT_COMMIT_HASH=$CIRCLE_SHA1
             git checkout $CURRENT_COMMIT_HASH
