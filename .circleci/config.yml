@@ -17,7 +17,7 @@ jobs:
             # Fetch the BASE_BRANCH, which is the target branch of the open PR for the current branch 
             BASE_BRANCH=$(curl -s \
               -H "Authorization: token ${GITHUB_PERSONAL_ACCESS_TOKEN}" \
-              "https://api.github.com/repos/Progate/path/pulls?head=Progate:${CIRCLE_BRANCH}&state=open" \
+              "https://api.github.com/repos/Progate/path-community-projects/pulls?head=Progate:${CIRCLE_BRANCH}&state=open" \
               | jq -r '.[0].base.ref')
             
             if [ "$BASE_BRANCH" = "null" ]; then
