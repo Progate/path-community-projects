@@ -1,16 +1,12 @@
 version: 2.1
 
-orbs:
-  advanced-checkout: vsco/advanced-checkout@1.1.0
-
 jobs:
   test-contents:
     machine:
       image: ubuntu-2204:current
     resource_class: medium
     steps:
-      - advanced-checkout/shallow-checkout:
-          fetch_submodules: true
+      - checkout
       - run:
           name: Get Updated Files
           command: |
