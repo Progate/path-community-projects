@@ -74,7 +74,7 @@ jobs:
             echo "export PROJECT_NAMES=$PROJECT_NAMES" >> $BASH_ENV
       - run:
           name: Pull Ariel Docker Image
-          command: docker pull progate/ariel:latest      
+          command: docker pull progate/ariel:latest
       - run:
           name: Run Contents Test
           command: |
