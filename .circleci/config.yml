@@ -87,5 +87,9 @@ jobs:
 
 workflows:
   test-contents-workflow:
+    filters:
+      branches:
+        ignore:
+          - main
     jobs:
       - test-contents
