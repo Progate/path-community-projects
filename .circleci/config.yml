@@ -12,7 +12,6 @@ jobs:
           command: |
             # Fetch the BASE_BRANCH, which is the target branch of the open PR for the current branch 
             BASE_BRANCH=$(curl -s \
-              -H "Authorization: token ${GITHUB_PERSONAL_ACCESS_TOKEN}" \
               "https://api.github.com/repos/Progate/path-community-projects/pulls?head=Progate:${CIRCLE_BRANCH}&state=open" \
               | jq -r '.[0].base.ref')
             
@@ -75,7 +74,7 @@ jobs:
             echo "export PROJECT_NAMES=$PROJECT_NAMES" >> $BASH_ENV
       - run:
           name: Pull Ariel Docker Image
-          command: docker pull progate/ariel:latest      
+          command: docker pull progate/ariel:latest
       - run:
           name: Run Contents Test
           command: |
@@ -89,4 +88,8 @@ jobs:
 workflows:
   test-contents-workflow:
     jobs:
-      - test-contents
+      - test-contents:
+          filters:
+            branches:
+              ignore:
+                - main
