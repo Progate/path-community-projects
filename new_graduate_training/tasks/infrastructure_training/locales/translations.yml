@@ -1,0 +1,46 @@
+infrastructure_training:
+  organization:
+    name:
+      ja: Progateコミュニティ
+  title:
+    ja: インフラ研修
+  task_items:
+    aws_instance:
+      title:
+        ja: AWSにインスタンスを立ててみよう
+    check_server_status:
+      title:
+        ja: サーバーの状態を見てみよう
+    start_php_web_app:
+      title:
+        ja: PHPでウェブアプリケーションを起動してみよう
+    php_fpm:
+      title:
+        ja: PHPをphp-fpmで動かしてみよう
+    use_nginx:
+      title:
+        ja: nginxを使ってみよう
+    overload_the_server:
+      title:
+        ja: 負荷をかけてみよう
+  check_items:
+    check_env:
+      title:
+        ja: タスクに必要な環境が整っている
+    infrastructure_training:
+      title:
+        ja: サーバーが実装されている
+  pull_request:
+    advice_items:
+      description:
+        title:
+          ja: 行った変更をまとめよう
+      objective:
+        title:
+          ja: 目的に何を書けば良いかわからないとき
+      change:
+        title:
+          ja: 変更内容に何を書けば良いかわからないとき
+      other:
+        title:
+          ja: その他に何を書けば良いかわからないとき
