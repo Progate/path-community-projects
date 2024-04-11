@@ -4,7 +4,7 @@
 
 PHP をインストールするために、以下のコマンドを実行します。
 
-```sh
+```terminal
 $ sudo apt update
 $ sudo apt install php
 ```
@@ -13,7 +13,7 @@ $ sudo apt install php
 
 Apache のプロセス数を確認するために、`ps` コマンドを使用します。以下のコマンドを実行して、Apache2 のプロセス数を取得します。
 
-```sh
+```terminal
 $ ps aux | grep apache2 | wc -l
 8
 ```
@@ -24,7 +24,7 @@ $ ps aux | grep apache2 | wc -l
 
 Apache の設定ファイルを確認するために、以下のコマンドを実行します。less コマンドを使用して、`000-default.conf` ファイルを表示します。
 
-```sh
+```terminal
 $ less /etc/apache2/sites-enabled/000-default.conf
 <VirtualHost *:80>
         # The ServerName directive sets the request scheme, hostname and port that
@@ -72,7 +72,7 @@ $ less /etc/apache2/sites-enabled/000-default.conf
 
 `/var/www/html` 内を確認してみると、デフォルトの HTML ファイルが配置されていることがわかります。
 
-```sh
+```terminal
 $ ls /var/www/html
 index.html
 ```
@@ -86,7 +86,7 @@ index.html
    - HTTPS ではなく HTTP でアクセスしてみましょう。
      - `http://your-server-ip` または `http://your-domain.com`
 3. デフォルトの Apache ウェルカムページが表示されるはずです。
-   - ![image](https://github.com/Progate/path-community-projects/assets/26600620/ab43635c-0468-4d4b-a82a-9506bfb08ce5)
+   - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/apache2_server.png'})
 
 ### ブラウザからアクセスしてSERVER_SOFTWAREの値を確認してみよう
 
@@ -94,7 +94,7 @@ index.html
 
 1. index.php を作成し、以下のコードを記述します。`vi` や `nano` などのエディタを使用して、index.php ファイルを作成します。
 
-    ```sh
+    ```terminal
     $ vi index.php
     ```
 
@@ -109,7 +109,7 @@ index.html
 
 2. index.php を `/var/www/html` ディレクトリに配置します。
 
-    ```sh
+    ```terminal
     $ sudo mv index.php /var/www/html
     ```
 
@@ -131,3 +131,11 @@ index.html
     ```php
     ["SERVER_SOFTWARE"]=> string(22) "Apache/2.4.52 (Ubuntu)"
     ```
+
+### 判定のためにサーバー情報を.envファイルに記載しよう
+
+次のステップに進む前に、`.env` ファイルに情報を記載してください。判定するために使用します。
+
+```.env
+ANSWER_CHECK_SERVER_STATUS_PUBLIC_DNS="ec2-xxx-xxx-xxx-xxx.ap-northeast-1.compute.amazonaws.com"
+```

@@ -4,7 +4,7 @@
 
 nginx をインストールするには、以下のコマンドを実行します。nginx とは、高性能な HTTP サーバーソフトウェアで、静的なコンテンツを配信するために使用されます。Apache HTTP Server と同様に、Web サーバーとして広く使用されています。
 
-```sh
+```terminal
 $ sudo apt install nginx
 ```
 
@@ -16,12 +16,12 @@ $ sudo apt install nginx
 
 リバースプロキシとは、クライアントからのリクエストを別のサーバーに転送する仕組みのことです。nginx を使用して、PHP リクエストを `php-fpm` にリバースプロキシできます。
 
-これを実現するためには、Nginx の設定ファイル（通常は `/etc/nginx/sites-available/` ディレクトリ内のファイル）に適切な設定を追加する必要があります。
+これを実現するためには、Nginx の設定ファイル（通常は `/etc/nginx/sites-available/` ディレクトリ内の `*.conf` ファイル）に適切な設定を追加する必要があります。今回は PHP に関する設定なので `/etc/nginx/sites-available/php.conf` に定義しましょう。デフォルトの設定は `/etc/nginx/sites-available/default` にあります。
 
 1. 設定ファイルを開く
 
-    ```sh
-    $ sudo vi /etc/nginx/sites-available/default
+    ```terminal
+    $ sudo vi /etc/nginx/sites-available/php.conf
     ```
 
 2. `php-fpm` にリクエストを転送する基本的な Nginx の設定を追加します。
@@ -29,25 +29,14 @@ $ sudo apt install nginx
     ```nginx
     server {
         listen 80;
-        server_name example.com; # あなたのドメインに置き換えてください
-
-        root /var/www/html; # ドキュメントルートのパス
-        index index.php index.html index.htm;
+        server_name php.aws;
+        root /var/www/html;
 
         location / {
-            try_files $uri $uri/ =404;
-        }
-
-        location ~ \.php$ {
-            include snippets/fastcgi-php.conf;
-
-            # UNIXドメインソケットを使用してphp-fpmにリクエストを転送
             fastcgi_pass unix:/run/php/php8.1-fpm.sock;
-
-            # 以下のディレクティブは、環境に応じて調整してください
             fastcgi_index index.php;
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         }
     }
     ```
@@ -57,127 +46,81 @@ $ sudo apt install nginx
     :wq
     ```
 
-    この設定では、`server_name` ディレクティブをあなたのドメイン名に、`root` ディレクティブをあなたのウェブサイトのドキュメントルートに置き換えてください。`location ~ \.php$` ブロックは、リクエストが PHP ファイルにマッチした場合に `php-fpm` に転送するように設定します。
+    `server_name` ディレクティブでは `php.aws` を設定しています。`server_name` ディレクティブはリクエストが来たときの Host とマッチした設定で処理するために利用します。マッチしない場合は `/etc/nginx/sites-available/default` のデフォルトの設定で処理されます。
 
-3. 設定が正しいことを確認するために、`sudo nginx -t` コマンドを実行します。
+    `location ~ \.php$` ブロックは、リクエストが PHP ファイルにマッチした場合に `php-fpm` に転送するように設定します。
 
-    ```sh
+3. 設定を `/etc/nginx/sites-enabled/` にシンボリックリンクとして追加します。
+
+    ```terminal
+    $ sudo ln -s /etc/nginx/sites-available/php.conf /etc/nginx/sites-enabled/
+    ```
+
+    このコマンドは、`/etc/nginx/sites-available/` ディレクトリ内の `php.conf` ファイルへのシンボリックリンクを `/etc/nginx/sites-enabled/` ディレクトリに作成します。
+
+    Nginx は、`/etc/nginx/sites-available/` 内の設定は直接読み込んでおらず、`/etc/nginx/sites-enabled/` ディレクトリ内の設定ファイルを読み込んでサーバーの設定を適用します。
+
+    `/etc/nginx/sites-available/` と `/etc/nginx/sites-enabled/` の 2 つのディレクトリを使うことで、利用可能なサイト設定と実際に有効化されているサイト設定を明確に区別できます。
+
+    ちなみに、どの設定ファイルを読み込むかの定義は、`/etc/nginx/nginx.conf` ファイル内の `include` ディレクティブで行われています。
+
+    ```nginx
+    include /etc/nginx/sites-enabled/*;
+    ```
+
+4. 設定が正しいことを確認するために、`sudo nginx -t` コマンドを実行します。
+
+    ```terminal
     $ sudo nginx -t
     nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
     nginx: configuration file /etc/nginx/nginx.conf test is successful
     ```
 
-4. 設定に問題がなければ、`sudo systemctl reload nginx` コマンドで Nginx を再読み込みします。
+5. 設定に問題がなければ、`sudo systemctl reload nginx` コマンドで Nginx を再読み込みします。
 
-    ```sh
+    ```terminal
     $ sudo systemctl reload nginx
     ```
 
-これで、Nginx は PHP リクエストを `php-fpm` にリバースプロキシし、PHP アプリケーションを正しく処理できるようになります。
+これで、Nginx は PHP リクエストを `php-fpm` にリバースプロキシし、PHP アプリケーションを正しく処理する設定を定義できました。
 
-設定反映後の `/etc/nginx/sites-available/default` の中身は以下のようになります。
+#### 手元のマシンで /etc/hosts を書いてブラウザでアクセスしてみよう
 
-```nginx
-##
-# You should look at the following URL's in order to grasp a solid understanding
-# of Nginx configuration files in order to fully unleash the power of Nginx.
-# https://www.nginx.com/resources/wiki/start/
-# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
-# https://wiki.debian.org/Nginx/DirectoryStructure
-#
-# In most cases, administrators will remove this file from sites-enabled/ and
-# leave it as reference inside of sites-available where it will continue to be
-# updated by the nginx packaging team.
-#
-# This file will automatically load configuration files provided by other
-# applications, such as Drupal or Wordpress. These applications will be made
-# available underneath a path with that package name, such as /drupal8.
-#
-# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
-##
+現状では、server_name の `php.aws` にマッチすることがないため、ブラウザでアクセスしてもリバースプロキシが動作しません。
 
-# Default server configuration
-#
-server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
+手元のマシンの `/etc/hosts` ファイルを編集することで、ドメイン名から IP アドレスへのマッピングを手動で設定できます。これにより、特定のドメイン名（`php.aws`）でリクエストを行ったときに、指定した IP アドレス（EC2 のパブリック IP アドレス）に向けてリクエストを送り server_name をマッチさせることができます。
 
-	# SSL configuration
-	#
-	# listen 443 ssl default_server;
-	# listen [::]:443 ssl default_server;
-	#
-	# Note: You should disable gzip for SSL traffic.
-	# See: https://bugs.debian.org/773332
-	#
-	# Read up on ssl_ciphers to ensure a secure configuration.
-	# See: https://bugs.debian.org/765782
-	#
-	# Self signed certs generated by the ssl-cert package
-	# Don't use them in a production server!
-	#
-	# include snippets/snakeoil.conf;
+**※ホストマシンの/etc/hostsファイルを編集することに注意してください。**
 
-	root /var/www/html;
-        index index.php index.html index.htm;
+##### /etc/hosts ファイルの編集
 
-	# Add index.php to the list if you are using PHP
+1. **/etc/hosts ファイルを開く**
 
-	server_name 54.238.193.253;
-        location / {
-          try_files $uri $uri/ =404;
-        }
-	location ~ \.php$ {
-          include snippets/fastcgi-php.conf;
+   まず、テキストエディターを使って `/etc/hosts` ファイルを開きます。このファイルを編集するためには、通常、管理者権限が必要です。
 
-          # UNIXドメインソケットを使用してphp-fpmにリクエストを転送
-          fastcgi_pass unix:/run/php/php8.1-fpm.sock;
+   ```terminal
+   $ sudo vi /etc/hosts
+   ```
 
-          # 以下のディレクティブは、環境に応じて調整してください
-          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-          include fastcgi_params;
-        }
+2. **ドメインとIPアドレスのマッピングを追加**
 
-	# pass PHP scripts to FastCGI server
-	#
-	#location ~ \.php$ {
-	#	include snippets/fastcgi-php.conf;
-	#
-	#	# With php-fpm (or other unix sockets):
-	#	fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-	#	# With php-cgi (or other tcp sockets):
-	#	fastcgi_pass 127.0.0.1:9000;
-	#}
+   `/etc/hosts` ファイルの末尾に、`php.aws` というドメイン名と、そのドメイン名に対応する IP アドレス（今回は Nginx サーバーが稼働している IP アドレス）を追加します。例えば、EC2 インスタンスの IP アドレスが `xxx.xxx.xxx.xxx` の場合、次のように記述します。
 
-	# deny access to .htaccess files, if Apache's document root
-	# concurs with nginx's one
-	#
-	#location ~ /\.ht {
-	#	deny all;
-	#}
-}
+   ```text
+   xxx.xxx.xxx.xxx php.aws
+   ```
 
+   この行を追加したら、ファイルを保存してエディターを閉じます。
 
-# Virtual Host configuration for example.com
-#
-# You can move that to a different file under sites-available/ and symlink that
-# to sites-enabled/ to enable it.
-#
-#server {
-#	listen 80;
-#	listen [::]:80;
-#
-#	server_name example.com;
-#
-#	root /var/www/example.com;
-#	index index.html;
-#
-#	location / {
-#		try_files $uri $uri/ =404;
-#	}
-#}
+3. **ブラウザで変更を確認**
 
-```
+   `/etc/hosts` ファイルの変更を適用した後、設定が正しく機能しているかを確認するために、`http://php.aws` にアクセスしてみましょう。
+
+   正しく設定されていれば、ブラウザで `http://php.aws` にアクセスした際に、Nginx サーバーが応答を返すはずです。
+
+これを利用して、実際のドメイン名を使用しているかのようにローカル環境でウェブアプリケーションのテストを行うことができます。
+
+**注意:** 実際のウェブサイトやサービスのドメイン名を `/etc/hosts` に追加すると、そのドメイン名への全てのリクエストが `/etc/hosts` に設定した IP アドレスに向けられるため、本番環境へのアクセスが妨げられる可能性があります。テストが終わったら、`/etc/hosts` ファイルから追加した行を削除することをお勧めします。
 
 #### ブラウザからアクセスしてSERVER_SOFTWAREの値を確認してみよう
 

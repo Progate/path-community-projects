@@ -6,7 +6,7 @@ EC2 インスタンスに SSH でログインして、サーバーの状態を�
 
 以下のコマンドを実行してください。`ps aux` コマンドはシステム上で実行中のすべてのプロセスに関する情報を表示します。
 
-```sh
+```terminal
 $ ps aux
 
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
@@ -111,7 +111,7 @@ ubuntu      2288  0.0  0.7  10464  3200 pts/0    R+   05:03   0:00 ps aux
 
 出力からプロセスの数を数えるには、一般的には `wc -l` コマンドをパイプでつなげて使用します。しかし、`ps aux` の出力の最初の行はヘッダー行なので、実際のプロセス数を得るにはそのヘッダー行を除外する必要があります。
 
-```sh
+```terminal
 $ ps aux | wc -l | awk '{print $1-1}'
 95
 ```
@@ -130,7 +130,7 @@ $ ps aux | wc -l | awk '{print $1-1}'
 
 以下のコマンドを実行してください。`top` コマンドはシステム上で実行中のプロセスのリアルタイム情報を表示します。
 
-```sh
+```terminal
 $ top
 
 top - 05:08:20 up 15:46,  1 user,  load average: 0.03, 0.03, 0.00
@@ -174,7 +174,7 @@ MiB Swap:      0.0 total,      0.0 free,      0.0 used.    275.4 avail Mem
 
 下記のコマンドを実行してください。`df -h` コマンドはシステムのディスク使用状況に関する情報を示しています。
 
-```sh
+```terminal
 $ df -h 
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       7.6G  1.7G  5.9G  23% /
@@ -207,7 +207,7 @@ tmpfs            45M  4.0K   45M   1% /run/user/1000
 
 以下のコマンドを実行してください。`which` コマンドは指定したコマンドのパスを表示します。
 
-```sh
+```terminal
 $ which nano
 /usr/bin/nano
 $ which vi
@@ -221,6 +221,42 @@ emacs not gedit
 
 `nano` と `vi` がインストールされていることがわかります。`emacs` と `gedit` はインストールされていないようです。必要に応じてこれらのエディタをインストールできます。
 
-```sh
+```terminal
 $ sudo apt update && sudo apt install emacs
+```
+
+### ~/.bashrc を開いてみよう
+
+ターミナル上でエディタを使うことになれていない場合は試しに `vi` コマンドを使ってみましょう。
+
+`~/.bashrc` ファイルは PATH の設定などで重要になりやすいファイルです。
+
+```terminal
+$ vi ~/.bashrc
+```
+
+`vi` エディタの基本的な使い方は以下の通りです。
+
+- `i` キーを押すと挿入モードになります。このモードで文字を入力できます。
+- 挿入モードから抜けるには `ESC` キーを押します。
+- 挿入モードから抜けた後、`:wq` と入力して `Enter` キーを押すと保存して終了します。
+  - 保存せずに終了する場合は、`:q!` と入力して `Enter` キーを押します。
+
+### 判定のためにサーバー情報を.envファイルに記載しよう
+
+次のステップに進む前に、`.env` ファイルに確認したサーバー情報を記載してください。判定するために使用します。
+
+※これらの値はタスクの手順を進めていく中で変化していきます。現時点の数値を入れておき、タスクの最後でも `.env` ファイルを更新して値の変化を確認してください。
+
+```.env
+# プロセスは何個ぐらい起動してる？
+ANSWER_CHECK_SERVER_STATUS_PS_COUNT=00
+
+# このサーバーのメモリはどのぐらい？そのうちどのぐらい使われてる？
+ANSWER_CHECK_SERVER_STATUS_MEM_TOTAL=000.0
+ANSWER_CHECK_SERVER_STATUS_MEM_USED=000.0
+
+# このサーバーのディスク容量はどのぐらい？そのうちどのぐらい使われてる？
+ANSWER_CHECK_SERVER_STATUS_DISK_TOTAL="0.0G"
+ANSWER_CHECK_SERVER_STATUS_DISK_USED="0.0G"
 ```

@@ -4,7 +4,7 @@
 
 まずは、現在の Apache の状態を確認しましょう。起動していることがわかります。
 
-```sh
+```terminal
 $ sudo systemctl status apache2
 ● apache2.service - The Apache HTTP Server
      Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor prese>
@@ -28,13 +28,13 @@ Mar 29 05:30:27 ip-172-31-36-76 systemd[1]: Started The Apache HTTP Server.
 
 Apache を止めるには、`systemctl` コマンドを使います。
 
-```sh
+```terminal
 $ sudo systemctl stop apache2
 ```
 
 Apache が停止したか確認しましょう。
 
-```sh
+```terminal
 $ sudo systemctl status apache2
 ○ apache2.service - The Apache HTTP Server
      Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset>
@@ -49,7 +49,7 @@ Mar 29 05:30:27 ip-172-31-36-76 systemd[1]: Starting The Apache HTTP Server...
 
 使えるコマンドは下記のとおりです。
 
-```sh
+```terminal
 # apache2の状態を見る
 $ sudo systemctl status apache2
 
@@ -67,7 +67,7 @@ $ sudo systemctl stop apache2
 
 PHP 8.1 の FastCGI プロセスマネージャ（php-fpm）をインストールします。
 
-```sh
+```terminal
 $ sudo apt install php8.1-fpm
 ```
 
@@ -80,7 +80,7 @@ $ sudo apt install php8.1-fpm
 
 `sudo systemctl status php8.1-fpm` コマンドを使って、`php-fpm` の状態を確認します。
 
-```sh
+```terminal
 $ sudo systemctl status php8.1-fpm
 ● php8.1-fpm.service - The PHP 8.1 FastCGI Process Manager
      Loaded: loaded (/lib/systemd/system/php8.1-fpm.service; enabled; vendor pre>
@@ -127,7 +127,7 @@ Mar 29 07:13:52 ip-172-31-36-76 systemd[1]: Started The PHP 8.1 FastCGI Proces
 
 確認した設定ファイルを開いてみましょう。
 
-```sh
+```terminal
 $ cat /etc/php/8.1/fpm/php-fpm.conf
 ;;;;;;;;;;;;;;;;;;;;;
 ; FPM Configuration ;
@@ -289,10 +289,10 @@ include=/etc/php/8.1/fpm/pool.d/*.conf
 
 プール設定ファイルを確認して、`php-fpm` がリッスンしているソケットファイルまたはポートを特定します。以下のコマンドを使って、プール設定ファイルを確認できます。
 
-```sh
-ls /etc/php/8.1/fpm/pool.d/
+```terminal
+$ ls /etc/php/8.1/fpm/pool.d/
 www.conf
-cat /etc/php/8.1/fpm/pool.d/www.conf
+$ cat /etc/php/8.1/fpm/pool.d/www.conf
 ︙
 ```
 
@@ -300,7 +300,7 @@ cat /etc/php/8.1/fpm/pool.d/www.conf
 
 `php-fpm` がリッスンしているソケットファイルの場所は、提供された設定ファイルの `listen` ディレクティブで指定されています。この場合、ソケットファイルは以下にあります：
 
-```sh
+```terminal
 $ cat /etc/php/8.1/fpm/pool.d/www.conf | grep "^listen ="
 listen = /run/php/php8.1-fpm.sock
 ```
