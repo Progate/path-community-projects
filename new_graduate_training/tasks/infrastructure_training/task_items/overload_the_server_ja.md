@@ -126,7 +126,7 @@ $ htop
 
 <img width="737" alt="image" src="https://github.com/Progate/path-community-projects/assets/26600620/7f1973bf-04d0-44bc-812c-1c402f1ac673">
 
-#### メモリ順に並べてみよう
+### htopでメモリ順に並べてみよう
 
 システムのプロセスをメモリ使用量や CPU 使用率に基づいて並べ替えることができます。
 
