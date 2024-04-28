@@ -1,17 +1,19 @@
 #!/bin/bash
 
-ENV_FILE=".env"
+set -eu
+
+ENV_FILE="questions.env"
 
 # .env ファイルから環境変数を読み込む
 if [ -f "$ENV_FILE" ]; then
-    export $(cat "$ENV_FILE" | xargs)
+    export "$(xargs <"$ENV_FILE")"
 else
-    echo ".env file not found"
+    echo "questions.env file not found"
     exit 1
 fi
 
 # Apache2のサービス状態を取得
-SERVICE_STATUS=$(ssh -i $KEY_PATH -o ConnectTimeout=10 -o BatchMode=yes -o StrictHostKeyChecking=no ubuntu@$AWS_EC2_HOST \
+SERVICE_STATUS=$(ssh -i "$KEY_PATH" -o ConnectTimeout=10 -o BatchMode=yes -o StrictHostKeyChecking=no ubuntu@"$AWS_EC2_HOST" \
                 'systemctl is-active apache2')
 
 # サービスが停止しているかどうかを確認

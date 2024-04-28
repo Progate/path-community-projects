@@ -1,18 +1,20 @@
 #!/bin/bash
 
-ENV_FILE=".env"
+set -eu
+
+ENV_FILE="questions.env"
 
 # .env ファイルから環境変数を読み込む
 if [ -f "$ENV_FILE" ]; then
-    export $(cat "$ENV_FILE" | xargs)
+    export "$(xargs <"$ENV_FILE")"
 else
-    echo ".env file not found"
+    echo "questions.env file not found"
     exit 1
 fi
 
 # 指定されたURLにHTTPリクエストを送信し、レスポンスを取得
 URL="http://$AWS_EC2_HOST/index.php"
-RESPONSE=$(curl -o /dev/null -s -w "%{http_code}\n" $URL)
+RESPONSE=$(curl -o /dev/null -s -w "%{http_code}\n" "$URL")
 
 # ステータスコードが200であるかどうかを確認
 if [ "$RESPONSE" -eq 200 ]; then

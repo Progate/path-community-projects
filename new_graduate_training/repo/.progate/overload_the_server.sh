@@ -1,12 +1,14 @@
 #!/bin/bash
 
-ENV_FILE=".env"
+set -eu
+
+ENV_FILE="questions.env"
 
 # .env ファイルから環境変数を読み込む
 if [ -f "$ENV_FILE" ]; then
-    export $(cat "$ENV_FILE" | xargs)
+    export "$(xargs <"$ENV_FILE")"
 else
-    echo ".env file not found"
+    echo "questions.env file not found"
     exit 1
 fi
 
@@ -15,9 +17,6 @@ LOG_FILE="/var/log/nginx/access.log"
 
 # チェックする最新のログエントリの数
 NUMBER_OF_LINES_TO_CHECK=1
-
-# 指定されたフォーマットに基づくパターン
-PATTERN="time:(.*)\tremote_addr:(.*)\trequest_method:(.*)\trequest_length:(.*)\trequest_uri:(.*)\thttps:(.*)\turi:(.*)\tquery_string:(.*)\tstatus:(.*)\tbytes_sent:(.*)\tbody_bytes_sent:(.*)\treferer:(.*)\tuseragent:(.*)\tforwardedfor:(.*)\trequest_time:(.*)\tupstream_response_time:(.*)\thost:(.*)"
 
 # SSH経由でリモートサーバー上のログファイルをチェック
 RESPONSE=$(ssh -i "$KEY_PATH" -o ConnectTimeout=10 -o BatchMode=yes -o StrictHostKeyChecking=no ubuntu@"$AWS_EC2_HOST" "tail -n $NUMBER_OF_LINES_TO_CHECK $LOG_FILE")

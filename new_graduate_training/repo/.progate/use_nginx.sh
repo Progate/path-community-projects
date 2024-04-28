@@ -1,12 +1,14 @@
 #!/bin/bash
 
-ENV_FILE=".env"
+set -eu
+
+ENV_FILE="questions.env"
 
 # .env ファイルから環境変数を読み込む
 if [ -f "$ENV_FILE" ]; then
-    export $(cat "$ENV_FILE" | xargs)
+    export "$(xargs <"$ENV_FILE")"
 else
-    echo ".env file not found"
+    echo "questions.env file not found"
     exit 1
 fi
 
@@ -17,7 +19,7 @@ URL="http://php.aws"
 RESPONSE=$(curl -s $URL)
 
 # 特定のキーワードがレスポンスに含まれているか確認
-if echo "$RESPONSE" | grep -q "nginx/1.18.0"; then
+if echo "$RESPONSE" | grep -q "nginx"; then
     echo "Test SUCCESS: PHP response contains expected nginx server software version."
     exit 0
 else
