@@ -127,7 +127,7 @@ $ sudo apt install nginx
 
 #### ブラウザからアクセスしてSERVER_SOFTWAREの値を確認してみよう
 
-`http://your-server-ip` または `http://your-domain.com` でアクセスしてみましょう。Apatche のデフォルトのウェルカムページではなく、PHP の情報が表示されるはずです。
+`http://php.aws` でアクセスしてみましょう。Apatche のデフォルトのウェルカムページではなく、PHP の情報が表示されるはずです。
 
 SERVER_SOFTWARE の値が `Apache/2.4.52 (Ubuntu)` ではなく、`nginx/1.18.0` になっていることを確認してください。
 
