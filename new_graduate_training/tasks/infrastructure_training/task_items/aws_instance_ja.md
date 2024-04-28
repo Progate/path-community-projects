@@ -20,7 +20,7 @@ EC2 インスタンスを作成します。以下の手順に従って、イン�
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_image.png'})
    - **インスタンスタイプの選択**: t2.nano を選択します。料金が安いため、学習やテストに適しています。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_instance_type.png'})
-   - **キーペアの設定**: 新しいキーペアを作成し、キーペアをダウンロードします。キーペアはインスタンスに SSH 接続するために必要です。
+   - **キーペアの設定**: 「新しいキーペアを作成」を押し、以下の画像を参考にしながらキーペアを作成して、キーペアをダウンロードしましょう。キーペアはインスタンスに SSH 接続するために必要です。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_ssh_key.png'})
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_ssh_key2.png'})
      - ダウンロードした `*.pem` ファイルは安全な場所に保存してください。このファイルは他のユーザーに渡さないようにしてください。ダウンロードしたファイルは後で SSH 接続に利用します。`.ssh` ディレクトリに置いておきましょう。
