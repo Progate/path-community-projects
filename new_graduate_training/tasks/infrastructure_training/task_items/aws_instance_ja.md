@@ -22,7 +22,7 @@ EC2 インスタンスを作成します。以下の手順に従って、イン�
    - **名前とタグの設定**: 自分にわかりやすい適当な名前をつけてください。（例：`infra-practice`）
    - **AMIの選択**: Ubuntu Server 22.04 LTS を選択します。AMI（Amazon Machine Image）は、EC2 インスタンスを起動するためのテンプレートです。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_image.png'})
-   - **インスタンスタイプの選択**: t2.nano を選択します。料金が安いため、学習やテストに適しています。
+   - **インスタンスタイプの選択**: t2.nano を選択します。料金が安いため、学習やテストに適しています。サインアップ後の最初の1年間の無料枠を使っている場合は、t2.micro を選択しても問題ありません。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_instance_type.png'})
    - **キーペアの設定**: 「新しいキーペアを作成」を押し、以下の画像を参考にしながらキーペアを作成して、キーペアをダウンロードしましょう。キーペアはインスタンスに SSH 接続するために必要です。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_ssh_key.png'})
