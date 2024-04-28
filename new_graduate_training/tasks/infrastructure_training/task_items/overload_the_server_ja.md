@@ -226,7 +226,6 @@ Terminal width too small, trimming output.
 
 下記のような変化が見られるかもしれません。
 
-- read や writ の急激な増加
 - recv や send の急激な増加
 - int や csw の急激な増加
 - most-expensive-cpu-process の変化
