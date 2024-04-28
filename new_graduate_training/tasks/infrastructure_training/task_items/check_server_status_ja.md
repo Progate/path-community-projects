@@ -213,9 +213,7 @@ $ which nano
 $ which vi
 /usr/bin/vi
 $ which emacs
-emacs not found
 $ which gedit
-emacs not gedit
 
 ```
 
