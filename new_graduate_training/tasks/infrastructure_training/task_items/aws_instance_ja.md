@@ -23,7 +23,7 @@ EC2 インスタンスを作成します。以下の手順に従って、イン�
    - **キーペアの設定**: 「新しいキーペアを作成」を押し、以下の画像を参考にしながらキーペアを作成して、キーペアをダウンロードしましょう。キーペアはインスタンスに SSH 接続するために必要です。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_ssh_key.png'})
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_ssh_key2.png'})
-     - ダウンロードした `*.pem` ファイルは安全な場所に保存してください。このファイルは他のユーザーに渡さないようにしてください。ダウンロードしたファイルは後で SSH 接続に利用します。`.ssh` ディレクトリに置いておきましょう。
+     - ダウンロードしたファイルは後で SSH 接続に利用します。以下のコマンドを参考にしながら、鍵を`~/.ssh` ディレクトリに移動しておきましょう。ダウンロードした `*.pem` ファイルは非常に重要なものなので、他のユーザーに渡したり、公開したりしないようにしてください。
      - `mv ~/Downloads/xxx.pem ~/.ssh/`
    - **セキュリティグループの設定**: Network settings で新しいセキュリティグループを作成し、SSH（ポート 22）と HTTP（ポート 80）のアクセスを許可します。
      - スクリーンショットでは、Anywhere(`0.0.0.0/0`) で設定していますが、状況によって `My IP` アドレスからのみ許可しても構いません。
