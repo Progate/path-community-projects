@@ -46,7 +46,9 @@ $ sudo apt install nginx
     :wq
     ```
 
-    `server_name` ディレクティブでは `php.aws` を設定しています。`server_name` ディレクティブはリクエストが来たときの Host とマッチした設定で処理するために利用します。マッチしない場合は `/etc/nginx/sites-available/default` のデフォルトの設定で処理されます。
+    `server_name` ディレクティブでは `php.aws` を設定しています。この `server_name` を利用することで、リクエストヘッダーに含まれる [Host](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Host) ごとに異なる設定を適用できます。どの設定にもマッチしないリクエストの場合は、 `/etc/nginx/sites-available/default` にあるデフォルトの設定で処理されます。
+    
+    今回の例では、 `php.aws` というホスト名でアクセスがあったときに、この設定が適用されます。ただし、現時点では `php.aws` というホスト名にアクセスしてもサーバーへ到達できないため、アクセスすることはできません。ホスト名に関する設定はすこし後のステップで行います。
 
     `location ~ \.php$` ブロックは、リクエストが PHP ファイルにマッチした場合に `php-fpm` に転送するように設定します。
 
