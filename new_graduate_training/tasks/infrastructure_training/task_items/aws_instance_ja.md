@@ -117,6 +117,12 @@ Host infra-training
   ServerAliveCountMax 12
 ```
 
+上記の設定をすることで、以下のような簡単なコマンドでsshによる接続ができるようになります。
+
+```terminal
+$ ssh infra-training
+```
+
 ### 判定のために接続情報を.envファイルに記載しよう
 
 次のステップに進む前に、`.env` ファイルに SSH 接続情報を記載してください。正常に接続できるかどうかを判定するために使用します。
