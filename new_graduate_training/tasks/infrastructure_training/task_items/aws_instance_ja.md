@@ -29,7 +29,7 @@ EC2 インスタンスを作成します。以下の手順に従って、イン�
        $ mv ~/Downloads/my_key.pem ~/.ssh/
        ```
    - **セキュリティグループの設定**: Network settings で新しいセキュリティグループを作成し、SSH（ポート 22）と HTTP（ポート 80）のアクセスを許可します。
-     - スクリーンショットでは、Anywhere(`0.0.0.0/0`) で設定していますが、状況によって `My IP` アドレスからのみ許可しても構いません。
+     - スクリーンショットでは、Anywhere(`0.0.0.0/0`) で設定していますが、この設定では世界中からアクセスが可能です。制限をかけたい場合は、 `My IP` アドレスからのみ許可するなどの設定が可能です。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_network_settings.png'})
    - **インスタンスの確認**: 設定が完了したら Launch instance を選択します。インスタンスを起動するための最終確認画面が表示されます。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_summary.png'})
