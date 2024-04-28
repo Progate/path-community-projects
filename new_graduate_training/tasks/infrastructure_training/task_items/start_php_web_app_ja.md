@@ -14,11 +14,18 @@ $ sudo apt install php
 Apache のプロセス数を確認するために、`ps` コマンドを使用します。以下のコマンドを実行して、Apache2 にまつわるプロセスを列挙します。
 
 ```terminal
-$ ps aux | grep apache2 | wc -l
-8
+$ ps aux | grep apache2
+root       10132  0.0  1.9 202892 18864 ?        Ss   13:33   0:00 /usr/sbin/apache2 -k start
+www-data   10134  0.0  0.9 203384  9208 ?        S    13:33   0:00 /usr/sbin/apache2 -k start
+www-data   10135  0.0  0.9 203384  9208 ?        S    13:33   0:00 /usr/sbin/apache2 -k start
+www-data   10136  0.0  0.9 203384  9208 ?        S    13:33   0:00 /usr/sbin/apache2 -k start
+www-data   10137  0.0  0.9 203384  9208 ?        S    13:33   0:00 /usr/sbin/apache2 -k start
+www-data   10138  0.0  0.9 203384  9208 ?        S    13:33   0:00 /usr/sbin/apache2 -k start
+www-data   10202  0.0  0.1   3740  1412 ?        Ss   13:33   0:00 /usr/bin/htcacheclean -d 120 -p /var/cache/apache2/mod_cache_disk -l 300M -n
+ubuntu     10396  0.0  0.2   7008  2304 pts/1    S+   13:34   0:00 grep --color=auto apache2
 ```
 
-結果から、Apache2 のプロセス数は 8 であることがわかります。この数値は、Apache2 が現在実行中のプロセス数を示しています。Apache2 のプロセス数は、サーバーの負荷やアクセス数に応じて変動することがあります。
+上記の結果を見ると、6つの Apache2 のプロセスが起動していることがわかります。Apache2 のプロセス数は、サーバーの負荷やアクセス数に応じて変動することがあります。
 
 ### どこにphpファイルを置けばブラウザから見られる？
 
