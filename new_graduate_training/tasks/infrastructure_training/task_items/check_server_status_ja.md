@@ -263,4 +263,7 @@ ANSWER_CHECK_SERVER_STATUS_MEM_USED=000.0
 # このサーバーのディスク容量はどのぐらい？そのうちどのぐらい使われてる？
 ANSWER_CHECK_SERVER_STATUS_DISK_TOTAL="0.0G"
 ANSWER_CHECK_SERVER_STATUS_DISK_USED="0.0G"
+
+```terminal
+$ progate submit
 ```
