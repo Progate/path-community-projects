@@ -110,7 +110,7 @@ Host infra-training
   User ubuntu
   Port 22
   IdentityFile ~/.ssh/my_key.pem
-  HostName パブリックIPアドレス
+  HostName 先ほどコピーしたパブリックIPアドレスかDNS名
   ServerAliveInterval 5
   ServerAliveCountMax 12
 ```
