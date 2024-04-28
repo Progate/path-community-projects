@@ -25,7 +25,7 @@ www-data   10202  0.0  0.1   3740  1412 ?        Ss   13:33   0:00 /usr/bin/htca
 ubuntu     10396  0.0  0.2   7008  2304 pts/1    S+   13:34   0:00 grep --color=auto apache2
 ```
 
-上記の結果を見ると、6つの Apache2 のプロセスが起動していることがわかります。Apache2 のプロセス数は、サーバーの負荷やアクセス数に応じて変動することがあります。
+上記の結果を見ると、6 つの Apache2 のプロセスが起動していることがわかります。Apache2 のプロセス数は、サーバーの負荷やアクセス数に応じて変動することがあります。
 
 ### どこにphpファイルを置けばブラウザから見られる？
 
@@ -89,7 +89,7 @@ index.html
    - EC2 ダッシュボードに移動して、インスタンスのパブリック IPv4 アドレスを確認します。
      - ![image](https://github.com/Progate/path-community-projects/assets/26600620/e60638f9-0a7c-4ee0-a3a6-c511de6121b5)
 2. ブラウザでアクセス
-   - このとき、HTTPS ではなく HTTP でアクセスすることに気をつけましょう。 
+   - このとき、HTTPS ではなく HTTP でアクセスすることに気をつけましょう。
 3. デフォルトの Apache ウェルカムページが表示されるはずです。
    - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/apache2_server.png'})
 

@@ -96,7 +96,7 @@ time:2024-03-31T00:10:40+00:00	remote_addr:185.224.128.43	request_method:GET	req
 
 各フィールドは次のとおりです:
 
-- **time**: ログが記録されたISO 8601 形式の時刻。
+- **time**: ログが記録された ISO 8601 形式の時刻。
 - **remote_addr**: クライアント（ユーザーのブラウザなど）の IP アドレス。
 - **request_method**: HTTP リクエストメソッド（この場合は `GET`）。
 - **request_length**: リクエストの全長（ヘッダーを含むバイト数）。
