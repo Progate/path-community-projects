@@ -46,7 +46,7 @@ EC2 インスタンスを作成します。以下の手順に従って、イン�
 
 2. **SSHコマンドをつかって接続**: SSH 鍵のパーミッションを設定した後、SSH コマンドを使用して EC2 インスタンスに接続します。接続するには、EC2 インスタンスのパブリック DNS またはパブリック IP アドレスが必要です。この情報は、AWS マネジメントコンソールの EC2 ダッシュボードから取得できます。
    1. 作成したインスタンスを選択
-   2. Connect to instance を選択
+   2. 「Connect to instance」 もしくは 「接続」 をクリック
    3. SSH client を選択し、接続までの手順とコマンドを確認
       - ![image](https://github.com/Progate/path-community-projects/assets/26600620/a3b62049-df17-472a-933b-5732df3f5e14)
 
