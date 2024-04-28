@@ -11,7 +11,7 @@ $ sudo apt install php
 
 ### Apacheのプロセスはいくつ起動してる？
 
-Apache のプロセス数を確認するために、`ps` コマンドを使用します。以下のコマンドを実行して、Apache2 のプロセス数を取得します。
+Apache のプロセス数を確認するために、`ps` コマンドを使用します。以下のコマンドを実行して、Apache2 にまつわるプロセスを列挙します。
 
 ```terminal
 $ ps aux | grep apache2 | wc -l
