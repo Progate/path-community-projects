@@ -166,7 +166,7 @@ CPU 順に並び替えて負荷を掛けると、Nginx や PHP-FPM などのプ�
 $ sudo apt install dstat
 ```
 
-#### dstat -tlamp --top-cpu-adv --top-io-adv と打ってみよう
+### dstat -tlamp --top-cpu-adv --top-io-adv と打ってみよう
 
 ```terminal
 $ dstat -tlamp --top-cpu-adv --top-io-adv
