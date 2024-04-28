@@ -217,7 +217,7 @@ $ which gedit
 
 ```
 
-`nano` と `vi` がインストールされていることがわかります。`emacs` と `gedit` はインストールされていないようです。必要に応じてこれらのエディタをインストールできます。
+`nano` と `vi` がインストールされていることがわかります。`emacs` と `gedit` はインストールされていないため、何も出力されないようです。好みに応じてこれらのエディタをインストールできます。
 
 ```terminal
 $ sudo apt update && sudo apt install emacs
