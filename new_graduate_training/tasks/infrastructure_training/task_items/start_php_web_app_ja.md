@@ -120,7 +120,7 @@ index.html
 
 3. ブラウザでアクセスして、`SERVER_SOFTWARE` の値を確認します。
 
-    - `http://your-server-ip/index.php` または `http://your-domain.com/index.php`
+    - `http://[IPアドレス もしくは Public DNS の値]/index.php`
 
     例えば、以下のような結果が表示されます。
 
