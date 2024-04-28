@@ -63,7 +63,6 @@ $ less /etc/apache2/sites-enabled/000-default.conf
         #Include conf-available/serve-cgi-bin.conf
 </VirtualHost>
 
-# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
 
 ```
 
