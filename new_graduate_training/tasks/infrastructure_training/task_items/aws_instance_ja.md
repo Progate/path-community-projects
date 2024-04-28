@@ -109,7 +109,7 @@ EC2 インスタンスを作成します。以下の手順に従って、イン�
 Host infra-training
   User ubuntu
   Port 22
-  IdentityFile 鍵ファイル
+  IdentityFile ~/.ssh/my_key.pem
   HostName パブリックIPアドレス
   ServerAliveInterval 5
   ServerAliveCountMax 12
