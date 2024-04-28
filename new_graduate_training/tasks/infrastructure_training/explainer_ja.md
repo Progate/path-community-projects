@@ -62,7 +62,7 @@ $ ps aux
 また、以下のコマンドを組み合わせてプロセス数を取得できる。
 
 ```terminal
-$ ps aux | tail -n+2 | wc -l  
+$ ps aux | tail -n+2 | wc -l
 $ ps aux | grep apache2
 ```
 
