@@ -15,6 +15,7 @@ EC2 インスタンスを作成します。以下の手順に従って、イン�
 3. **インスタンスの作成**:「インスタンスの作成」を選択します。「インスタンス」とは仮想サーバーのことを指しており、このボタンを押すことにより、新しい仮想サーバーを立ち上げる設定画面へ移動できます。
    - ![image](https://storage.googleapis.com/zenn-user-upload/cb295726ca6f-20240328.png)
 4. **インスタンスの設定**: インスタンスを次のとおりに設定をします。
+   - **名前とタグの設定**: 自分にわかりやすい適当な名前をつけてください。（例：`infra-practice`）
    - **AMIの選択**: Ubuntu Server 22.04 LTS を選択します。AMI（Amazon Machine Image）は、EC2 インスタンスを起動するためのテンプレートです。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_image.png'})
    - **インスタンスタイプの選択**: t2.nano を選択します。料金が安いため、学習やテストに適しています。
