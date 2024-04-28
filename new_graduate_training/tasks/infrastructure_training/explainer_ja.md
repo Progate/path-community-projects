@@ -138,6 +138,12 @@ $ sudo systemctl reload apache2
 
 # apache2を止める
 $ sudo systemctl stop apache2
+
+# マシンを再起動したときに apache2 を自動起動する
+$ sudo systemctl enable apache2
+
+# マシンを再起動したときに apache2 を自動起動しないようにする
+$ sudo systemctl disable apache2
 ```
 
 ### ls
