@@ -6,7 +6,7 @@ ENV_FILE="questions.env"
 
 # .env ファイルから環境変数を読み込む
 if [ -f "$ENV_FILE" ]; then
-    export "$(xargs < "$ENV_FILE")"
+    export $(xargs < "$ENV_FILE")
 else
     echo "questions.env file not found"
     exit 1
