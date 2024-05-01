@@ -126,9 +126,9 @@ $ ssh infra-training
 
 ### 判定のために接続情報を.envファイルに記載しよう
 
-次のステップに進む前に、`.env` ファイルに SSH 接続情報を記載してください。正常に接続できるかどうかを判定するために使用します。
+次のステップに進む前に、`questions.sh` ファイルに SSH 接続情報を記載してください。正常に接続できるかどうかを判定するために使用します。
 
-```text
+```sh
 KEY_PATH="~/.ssh/xxxx.pem"
 AWS_EC2_HOST="your-instance-public-dns.compute.amazonaws.com"
 ```

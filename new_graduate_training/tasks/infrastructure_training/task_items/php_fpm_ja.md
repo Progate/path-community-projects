@@ -77,6 +77,14 @@ PHP 8.1 の FastCGI プロセスマネージャ（php-fpm）をインストー�
 $ sudo apt install php8.1-fpm
 ```
 
+もし、php8.1-fpm が見つからないというエラーが出る場合は下記を実行したあとに再度インストールしてみてください。
+
+```terminal
+$ sudo apt update && sudo apt install -y software-properties-common 
+$ sudo add-apt-repository ppa:ondrej/php
+$ sudo apt update
+```
+
 インストール時に下記のような画面が表示される場合があるので、デフォルトの選択肢で OK します。
 
 - <img width="580" alt="image" src="https://github.com/Progate/path-community-projects/assets/26600620/5e8edd66-e2aa-4ae3-80b3-604831bde64b">

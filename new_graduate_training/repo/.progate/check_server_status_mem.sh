@@ -2,15 +2,16 @@
 
 set -eu
 
-ENV_FILE="questions.env"
-
-# .env ファイルから環境変数を読み込む
-if [ -f "$ENV_FILE" ]; then
-    export $(xargs < "$ENV_FILE")
-else
-    echo "questions.env file not found"
+PROJECT_DIR=$(dirname "$(cd "$(dirname "$0")"; pwd)")
+QUESTIONS_SH_FILEPATH="${PROJECT_DIR}/questions.sh"
+if [ ! -f "$QUESTIONS_SH_FILEPATH" ] ; then
+    echo "${QUESTIONS_SH_FILEPATH} is not found"
     exit 1
 fi
+
+# Load variables
+# shellcheck disable=SC1090
+. "$QUESTIONS_SH_FILEPATH"
 
 # top コマンドの実行結果からメモリ情報を取得
 MEMORY_INFO=$(ssh -i "$KEY_PATH" -o ConnectTimeout=10 -o BatchMode=yes -o StrictHostKeyChecking=no ubuntu@"$AWS_EC2_HOST" \

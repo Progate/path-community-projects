@@ -139,8 +139,8 @@ index.html
 
 ### 判定のためにサーバー情報を.envファイルに記載しよう
 
-次のステップに進む前に、`.env` ファイルに情報を記載してください。判定するために使用します。
+次のステップに進む前に、`questions.sh` ファイルに情報を記載してください。判定するために使用します。
 
-```.env
+```sh
 ANSWER_CHECK_SERVER_STATUS_PUBLIC_DNS="ec2-xxx-xxx-xxx-xxx.ap-northeast-1.compute.amazonaws.com"
 ```

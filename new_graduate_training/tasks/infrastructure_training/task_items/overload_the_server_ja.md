@@ -89,32 +89,46 @@ Nginx では、`$request_time` 変数を使用してレスポンスタイムを�
 
     これで、Nginx のアクセスログにレスポンスタイムが含まれるようになり、パフォーマンスの監視やトラブルシューティングに役立てることができます。
 
-```sh
-time:2024-03-31T00:10:40+00:00	remote_addr:185.224.128.43	request_method:GET	request_length:425	request_uri:/	https:	uri:/index.php	query_string:-	status:200	bytes_sent:1007	body_bytes_sent:804	referer:-	useragent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46	forwardedfor:-	request_time:0.000	upstream_response_time:0.000	host:54.238.193.253
+    ```sh
+    time:2024-03-31T00:10:40+00:00	remote_addr:185.224.128.43	request_method:GET	request_length:425	request_uri:/	https:	uri:/index.php	query_string:-	status:200	bytes_sent:1007	body_bytes_sent:804	referer:-	useragent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46	forwardedfor:-	request_time:0.000	upstream_response_time:0.000	host:54.238.193.253
 
-```
+    ```
 
-各フィールドは次のとおりです:
+    各フィールドは次のとおりです:
 
-- **time**: ログが記録された ISO 8601 形式の時刻。
-- **remote_addr**: クライアント（ユーザーのブラウザなど）の IP アドレス。
-- **request_method**: HTTP リクエストメソッド（この場合は `GET`）。
-- **request_length**: リクエストの全長（ヘッダーを含むバイト数）。
-- **request_uri**: リクエストされた完全な URI（この場合はルート `/`）。
-- **https**: HTTPS を使用している場合、ここに値が入る（ここでは空白、つまり HTTP リクエスト）。
-- **uri**: リクエストされた URI のパス（この場合は `/index.php`）。
-- **query_string**: クエリストリング（存在しない場合は `-`）。
-- **status**: HTTP レスポンスのステータスコード（`200` は成功を意味する）。
-- **bytes_sent**: クライアントへ送信された全バイト数（ヘッダーを含む）。
-- **body_bytes_sent**: クライアントへ送信されたボディのバイト数（ヘッダーを除く）。
-- **referer**: どのページからリクエストが来たかを示すリファラーURL（直接アクセスの場合は `-`）。
-- **useragent**: ユーザーエージェントの文字列（クライアントのブラウザや OS に関する情報）。
-- **forwardedfor**: X-Forwarded-For ヘッダーの内容（プロキシ経由のリクエストの元の IP アドレス）。この場合は `-`。
-- **request_time**: リクエストの処理にかかった時間（秒単位）。この場合は `0.000` 秒。
-- **upstream_response_time**: アップストリームサーバー（例えば PHP-FPM やバックエンドアプリケーションサーバー）からのレスポンスにかかった時間。この場合は `0.000` 秒。
-- **host**: リクエストが送信されたホスト名または IP アドレス。
+    - **time**: ログが記録された ISO 8601 形式の時刻。
+    - **remote_addr**: クライアント（ユーザーのブラウザなど）の IP アドレス。
+    - **request_method**: HTTP リクエストメソッド（この場合は `GET`）。
+    - **request_length**: リクエストの全長（ヘッダーを含むバイト数）。
+    - **request_uri**: リクエストされた完全な URI（この場合はルート `/`）。
+    - **https**: HTTPS を使用している場合、ここに値が入る（ここでは空白、つまり HTTP リクエスト）。
+    - **uri**: リクエストされた URI のパス（この場合は `/index.php`）。
+    - **query_string**: クエリストリング（存在しない場合は `-`）。
+    - **status**: HTTP レスポンスのステータスコード（`200` は成功を意味する）。
+    - **bytes_sent**: クライアントへ送信された全バイト数（ヘッダーを含む）。
+    - **body_bytes_sent**: クライアントへ送信されたボディのバイト数（ヘッダーを除く）。
+    - **referer**: どのページからリクエストが来たかを示すリファラーURL（直接アクセスの場合は `-`）。
+    - **useragent**: ユーザーエージェントの文字列（クライアントのブラウザや OS に関する情報）。
+    - **forwardedfor**: X-Forwarded-For ヘッダーの内容（プロキシ経由のリクエストの元の IP アドレス）。この場合は `-`。
+    - **request_time**: リクエストの処理にかかった時間（秒単位）。この場合は `0.000` 秒。
+    - **upstream_response_time**: アップストリームサーバー（例えば PHP-FPM やバックエンドアプリケーションサーバー）からのレスポンスにかかった時間。この場合は `0.000` 秒。
+    - **host**: リクエストが送信されたホスト名または IP アドレス。
 
-このログフォーマットは、Web サーバーのパフォーマンスモニタリングやトラブルシューティングに役立つ詳細な情報を提供します。リクエストの処理時間、バイト数、使用されたメソッド、ステータスコードなどから、サーバーの状態や特定のリクエストの問題を把握できます。
+    このログフォーマットは、Web サーバーのパフォーマンスモニタリングやトラブルシューティングに役立つ詳細な情報を提供します。リクエストの処理時間、バイト数、使用されたメソッド、ステータスコードなどから、サーバーの状態や特定のリクエストの問題を把握できます。
+
+4. 設定が正しいことを確認するために、`sudo nginx -t` コマンドを実行します。
+
+    ```terminal
+    $ sudo nginx -t
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    nginx: configuration file /etc/nginx/nginx.conf test is successful
+    ```
+
+5. 設定に問題がなければ、`sudo systemctl reload nginx` コマンドで Nginx を再読み込みします。
+
+    ```terminal
+    $ sudo systemctl reload nginx
+    ```
 
 ### htopコマンドを使ってみよう
 
@@ -232,9 +246,9 @@ Terminal width too small, trimming output.
 
 ### 判定のためにサーバー情報を.envファイルに記載しよう
 
-最後に、現時点の数値で `.env` ファイルを更新してください。変化はありましたか？
+最後に、現時点の数値で `questions.sh` ファイルを更新してください。変化はありましたか？
 
-```.env
+```sh
 # プロセスは何個ぐらい起動してる？
 ANSWER_CHECK_SERVER_STATUS_PS_COUNT=00
 
@@ -262,3 +276,19 @@ ANSWER_CHECK_SERVER_STATUS_DISK_USED_GB="0.0G"
 3. インスタンスの一覧から削除するインスタンスを選択します。
 4. インスタンスを右クリックし、`インスタンスの状態` > `終了` を選択します。
 5. インスタンスの終了を確認します。
+
+## /etc/hosts の掃除
+
+このタスクで編集した `/etc/hosts` ファイルは、不要になったら元に戻しておきましょう。
+
+```terminal
+$ sudo vi /etc/hosts
+```
+
+`/etc/hosts` ファイルを編集し、追加した行を削除します。
+
+```text
+xxx.xxx.xxx.xxx php.aws
+```
+
+この行を削除したら、ファイルを保存してエディターを閉じます。

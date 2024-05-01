@@ -2,15 +2,16 @@
 
 set -eu
 
-ENV_FILE="questions.env"
-
-# .env ファイルから環境変数を読み込む
-if [ -f "$ENV_FILE" ]; then
-    export $(xargs < "$ENV_FILE")
-else
-    echo "questions.env file not found"
+PROJECT_DIR=$(dirname "$(cd "$(dirname "$0")"; pwd)")
+QUESTIONS_SH_FILEPATH="${PROJECT_DIR}/questions.sh"
+if [ ! -f "$QUESTIONS_SH_FILEPATH" ] ; then
+    echo "${QUESTIONS_SH_FILEPATH} is not found"
     exit 1
 fi
+
+# Load variables
+# shellcheck disable=SC1090
+. "$QUESTIONS_SH_FILEPATH"
 
 # サーバーのURL
 URL="http://php.aws"
