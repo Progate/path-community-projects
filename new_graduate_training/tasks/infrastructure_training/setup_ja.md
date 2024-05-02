@@ -7,19 +7,19 @@
 以下のコマンドでタスクに利用するソースコードをダウンロードします。
 
 ```terminal
-$ progate download W5HRkGVjRsa8fzXi53YOU --project-dir new_graduate_training_infrastructure_training --name infrastructure_training
+$ progate download W5HRkGVjRsa8fzXi53YOU --project-dir new_graduate_training_infrastructure_training --name infra_training
 ```
 
 次に、VS Code で該当のディレクトリを開きます（参考: [Visual Studio Code のインストール](/articles/install-vscode)）
 
 ```terminal
-$ code $HOME/progate_path/new_graduate_training_infrastructure_training/infrastructure_training
+$ code $HOME/progate_path/new_graduate_training_infrastructure_training/infra_training
 ```
 
 最後に以下のコマンドを実行してカレントディレクトリを移動します。
 
 ```terminal
-$ cd $HOME/progate_path/new_graduate_training_infrastructure_training/infrastructure_training
+$ cd $HOME/progate_path/new_graduate_training_infrastructure_training/infra_training
 ```
 
 ## 2. 環境のチェックをします
