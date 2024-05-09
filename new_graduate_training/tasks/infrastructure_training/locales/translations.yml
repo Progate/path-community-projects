@@ -1,0 +1,68 @@
+infrastructure_training:
+  organization:
+    name:
+      ja: Progateコミュニティ
+  title:
+    ja: インフラ研修
+  task_items:
+    aws_instance:
+      title:
+        ja: AWSにインスタンスを立ててみよう
+    check_server_status:
+      title:
+        ja: サーバーの状態を見てみよう
+    start_php_web_app:
+      title:
+        ja: PHPでウェブアプリケーションを起動してみよう
+    php_fpm:
+      title:
+        ja: PHPをphp-fpmで動かしてみよう
+    use_nginx:
+      title:
+        ja: nginxを使ってみよう
+    overload_the_server:
+      title:
+        ja: 負荷をかけてみよう
+  check_items:
+    check_env:
+      title:
+        ja: タスクに必要な環境が整っている
+    aws_instance:
+      title:
+        ja: AWSにインスタンスにSSH接続できている
+      advice_items:
+        chmod:
+          title:
+            ja: EC2インスタンスにSSH接続できない場合
+        security_group:
+          title:
+            ja: セキュリティグループが原因で接続できない場合
+    check_server_status:
+      title:
+        ja: サーバーのプロセス・メモリ・ディスクが確認できている
+    start_php_web_app:
+      title:
+        ja: Webサーバーにindex.phpファイルが置かれている
+    php_fpm:
+      title:
+        ja: Apache2が停止している
+    use_nginx:
+      title:
+        ja: php.awsにアクセスしたときにリバースプロキシが動作している
+    overload_the_server:
+      title:
+        ja: Nginxのログフォーマットが適切に設定されている
+  pull_request:
+    advice_items:
+      description:
+        title:
+          ja: 行った変更をまとめよう
+      objective:
+        title:
+          ja: 目的に何を書けば良いかわからないとき
+      change:
+        title:
+          ja: 変更内容に何を書けば良いかわからないとき
+      other:
+        title:
+          ja: その他に何を書けば良いかわからないとき

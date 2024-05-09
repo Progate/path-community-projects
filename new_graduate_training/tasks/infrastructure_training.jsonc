@@ -1,0 +1,227 @@
+{
+  "id": "8ybBQYEXl73ajnNRGc-E0",
+  "situationId": "W5HRkGVjRsa8fzXi53YOU",
+  "type": {
+    "value": "STUDY",
+    "category": ["container_cloud"]
+  },
+  "title": "infrastructure_training.title",
+  "translationFiles": [
+    "./infrastructure_training/locales/translations.yml"
+  ],
+  "explainer": "./infrastructure_training/explainer",
+  "menu": {
+    "overviewItem": "./infrastructure_training/overview",
+    "setUpItem": "./infrastructure_training/setup",
+    "specItems": [],
+    "taskItems": [
+      {
+        "anchorLink": "aws-instance",
+        "description": "./infrastructure_training/task_items/aws_instance",
+        "title": "infrastructure_training.task_items.aws_instance.title"
+      },
+      {
+        "anchorLink": "check-server-status",
+        "description": "./infrastructure_training/task_items/check_server_status",
+        "title": "infrastructure_training.task_items.check_server_status.title"
+      },
+      {
+        "anchorLink": "start-php-web-app",
+        "description": "./infrastructure_training/task_items/start_php_web_app",
+        "title": "infrastructure_training.task_items.start_php_web_app.title"
+      },
+      {
+        "anchorLink": "php-fpm",
+        "description": "./infrastructure_training/task_items/php_fpm",
+        "title": "infrastructure_training.task_items.php_fpm.title"
+      },
+      {
+        "anchorLink": "use-nginx",
+        "description": "./infrastructure_training/task_items/use_nginx",
+        "title": "infrastructure_training.task_items.use_nginx.title"
+      },
+      {
+        "anchorLink": "overload-the-server",
+        "description": "./infrastructure_training/task_items/overload_the_server",
+        "title": "infrastructure_training.task_items.overload_the_server.title"
+      }
+    ]
+  },
+  "checkItems": [
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "dBC8Uo3bc7GUyTBJmXzPX",
+          "commandLine": "progate diagnose",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "infrastructure_training.check_items.check_env.title",
+      "id": "O9d7pL1kZYd49wqhZN8YU"
+    },
+    {
+      "adviceItems": [
+        {
+          "id": "UddnUsch7MzdjiSYzXuVd",
+          "title": "infrastructure_training.check_items.aws_instance.advice_items.chmod.title",
+          "description": "./infrastructure_training/advices/aws_instance/chmod"
+        },
+        {
+          "id": "32A70syXTokZzspUX7Zx7",
+          "title": "infrastructure_training.check_items.aws_instance.advice_items.security_group.title",
+          "description": "./infrastructure_training/advices/aws_instance/security_group"
+        }
+      ],
+      "commands": [
+        {
+          "id": "mD80W5xuyXKxfSqf5LyF5",
+          "commandLine": "bash ./.progate/aws_instance.sh",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "infrastructure_training.check_items.aws_instance.title",
+      "id": "WxuI6LOZzVWZZYEC8wWDU"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "0-ko_FQTuMshSjSmNgSBJ",
+          "commandLine": "bash ./.progate/check_server_status_process.sh",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        },
+        {
+          "id": "Z5NuAfm5_UND1um1S4zYd",
+          "commandLine": "bash ./.progate/check_server_status_mem.sh",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        },
+        {
+          "id": "sTo47zDywScTxuvHL_Mid",
+          "commandLine": "bash ./.progate/check_server_status_disc.sh",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "infrastructure_training.check_items.check_server_status.title",
+      "id": "qKxCQRu2IWHXGy07Wn9C7"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "AyGUdcrF7ESGHgmavuXJo",
+          "commandLine": "bash ./.progate/start_php_web_app.sh",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "infrastructure_training.check_items.start_php_web_app.title",
+      "id": "BXrVgTnvdMiZvIExderwv"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "fXQ7VJ6IbgsgHtGhhe6iq",
+          "commandLine": "bash ./.progate/php_fpm.sh",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "infrastructure_training.check_items.php_fpm.title",
+      "id": "3mxQZKzFgzQkwR6FySWCj"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "RStcsEqpBjVoyCUKJp1-V",
+          "commandLine": "bash ./.progate/use_nginx.sh",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "infrastructure_training.check_items.use_nginx.title",
+      "id": "Wcw_1Mwo0Ipqdf3DbK_Kf"
+    },
+    {
+      "adviceItems": [],
+      "commands": [
+        {
+          "id": "qTXdtO4CVzM7oEpRKbMIF",
+          "commandLine": "bash ./.progate/overload_the_server.sh",
+          "arielCommandExpectation": {
+            "isSuccessWhenAnswerOff": true,
+            "isSuccessWhenAnswerOn": true
+          }
+        }
+      ],
+      "description": "infrastructure_training.check_items.overload_the_server.title",
+      "id": "ail1wZZBLvadhDofWOWWZ"
+    }
+  ],
+  "taskNoteAdviceItems": [
+    {
+      "id": "SfHVXnAnpk6NQGGjYckYp",
+      "title": "infrastructure_training.pull_request.advice_items.description.title",
+      "description": "./infrastructure_training/advices/pull_request/description"
+    },
+    {
+      "id": "zfxLIDAhYcY44uXbooQtf",
+      "title": "infrastructure_training.pull_request.advice_items.objective.title",
+      "description": "./infrastructure_training/advices/pull_request/objective"
+    },
+    {
+      "id": "Q8MZlulFC0zMosej8qELX",
+      "title": "infrastructure_training.pull_request.advice_items.change.title",
+      "description": "./infrastructure_training/advices/pull_request/change"
+    },
+    {
+      "id": "EO49vnn-pCp71GGEOTLlF",
+      "title": "infrastructure_training.pull_request.advice_items.other.title",
+      "description": "./infrastructure_training/advices/pull_request/other"
+    }
+  ],
+  "prerequisiteKnowledge": {
+    "additionalMarkdown": "./infrastructure_training/prerequisite_knowledge/additional"
+  },
+  "lifecycleStages": {
+    "development": "active",
+    "staging": "active",
+    "production": "draft"
+  },
+  "arielOption": {
+    "skip": true
+  },
+  "organization": {
+    "type": "community",
+    "name": "infrastructure_training.organization.name"
+  },
+  "recommendTaskIds": [
+
+  ],
+  "relatedCourseIds": [
+    "J__AVw33aXiW8EpJyVkjd"
+  ]
+}
