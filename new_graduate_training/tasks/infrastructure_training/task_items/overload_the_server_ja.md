@@ -7,7 +7,7 @@ Nginx はアクセスログを使用してリクエストの情報を記録し�
 まずは既存のアクセスログを確認してみましょう。Nginx のアクセスログは通常、`/var/log/nginx/access.log` に保存されています。`tail` コマンドを使用して、アクセスログの内容を表示します。
 
 ```terminal
-$ tail /var/log/nginx/access.log 
+$ tail -f /var/log/nginx/access.log 
 # 例
 192.168.1.1 - - [31/Mar/2024:00:10:40 +0000] "GET /test.php HTTP/1.1" 200 804 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46"
 ```
@@ -101,7 +101,7 @@ Nginx では、`$request_time` 変数を使用してレスポンスタイムを�
     http {
 
         # その他の設定...
-        
+
         ##
         # Logging Settings
         ##
