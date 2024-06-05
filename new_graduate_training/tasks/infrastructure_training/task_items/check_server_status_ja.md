@@ -212,15 +212,10 @@ $ which nano
 /usr/bin/nano
 $ which vi
 /usr/bin/vi
-$ which emacs
 
 ```
 
-`nano` と `vi` がインストールされていることがわかります。`emacs` はインストールされていないため、何も出力されないようです。好みに応じてこれらのエディタをインストールできます。
-
-```terminal
-$ sudo apt update && sudo apt install emacs
-```
+`nano` と `vi` がインストールされていることがわかります。好みに応じて利用してください。
 
 ### ~/.bashrc を開いてみよう
 
@@ -260,6 +255,7 @@ ANSWER_CHECK_SERVER_STATUS_MEM_USED_MIB=000.0
 # このサーバーのディスク容量はどのぐらい？そのうちどのぐらい使われてる？
 ANSWER_CHECK_SERVER_STATUS_DISK_TOTAL_GB="0.0G"
 ANSWER_CHECK_SERVER_STATUS_DISK_USED_GB="0.0G"
+```
 
 ```terminal
 $ progate submit

@@ -209,7 +209,7 @@
   "lifecycleStages": {
     "development": "active",
     "staging": "active",
-    "production": "draft"
+    "production": "active"
   },
   "arielOption": {
     "skip": true

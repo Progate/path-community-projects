@@ -42,7 +42,7 @@ infrastructure_training:
         ja: サーバーのプロセス・メモリ・ディスクが確認できている
     start_php_web_app:
       title:
-        ja: Webサーバーにindex.phpファイルが置かれている
+        ja: Webサーバーにtest.phpファイルが置かれている
     php_fpm:
       title:
         ja: Apache2が停止している

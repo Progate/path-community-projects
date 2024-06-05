@@ -14,7 +14,7 @@ fi
 . "$QUESTIONS_SH_FILEPATH"
 
 # 指定されたURLにHTTPリクエストを送信し、レスポンスを取得
-URL="http://$AWS_EC2_HOST/index.php"
+URL="http://$AWS_EC2_HOST/test.php"
 RESPONSE=$(curl -o /dev/null -s -w "%{http_code}\n" "$URL")
 
 # ステータスコードが200であるかどうかを確認

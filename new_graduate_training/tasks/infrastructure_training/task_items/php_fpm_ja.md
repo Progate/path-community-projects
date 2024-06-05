@@ -69,80 +69,66 @@ $ sudo systemctl enable apache2
 $ sudo systemctl disable apache2
 ```
 
-### aptでphp8.1-fpmをインストールしてみよう
+### aptでphp8.3-fpmをインストールしてみよう
 
-PHP 8.1 の FastCGI プロセスマネージャ（php-fpm）をインストールします。
-
-```terminal
-$ sudo apt install php8.1-fpm
-```
-
-もし、php8.1-fpm が見つからないというエラーが出る場合は下記を実行したあとに再度インストールしてみてください。
+PHP 8.3 の FastCGI プロセスマネージャ（php-fpm）をインストールします。
 
 ```terminal
-$ sudo apt update && sudo apt install -y software-properties-common 
-$ sudo add-apt-repository ppa:ondrej/php
-$ sudo apt update
+$ sudo apt install php8.3-fpm
 ```
-
-インストール時に下記のような画面が表示される場合があるので、デフォルトの選択肢で OK します。
-
-- <img width="580" alt="image" src="https://github.com/Progate/path-community-projects/assets/26600620/5e8edd66-e2aa-4ae3-80b3-604831bde64b">
-- <img width="580" alt="image" src="https://github.com/Progate/path-community-projects/assets/26600620/c3bec52a-9c8c-472f-82b9-d85cda042d1d">
 
 ### php-fpmの状態を確認してみよう
 
-`sudo systemctl status php8.1-fpm` コマンドを使って、`php-fpm` の状態を確認します。
+`sudo systemctl status php8.3-fpm` コマンドを使って、`php-fpm` の状態を確認します。
 
 ```terminal
-$ sudo systemctl status php8.1-fpm
-● php8.1-fpm.service - The PHP 8.1 FastCGI Process Manager
-     Loaded: loaded (/lib/systemd/system/php8.1-fpm.service; enabled; vendor pre>
-     Active: active (running) since Fri 2024-03-29 07:13:52 UTC; 11s ago
-       Docs: man:php-fpm8.1(8)
-    Process: 22935 ExecStartPost=/usr/lib/php/php-fpm-socket-helper install /run>
-   Main PID: 22932 (php-fpm8.1)
-     Status: "Processes active: 0, idle: 2, Requests: 0, slow: 0, Traffic: 0req/>
-      Tasks: 3 (limit: 517)
-     Memory: 7.2M
-        CPU: 44ms
-     CGroup: /system.slice/php8.1-fpm.service
-             ├─22932 "php-fpm: master process (/etc/php/8.1/fpm/php-fpm.conf)" ">
-             ├─22933 "php-fpm: pool www" "" "" "" "" "" "" "" "" "" "" "" "" "" >
-             └─22934 "php-fpm: pool www" "" "" "" "" "" "" "" "" "" "" "" "" "" >
+$ sudo systemctl status php8.3-fpm
+● php8.3-fpm.service - The PHP 8.3 FastCGI Process Manager
+     Loaded: loaded (/usr/lib/systemd/system/php8.3-fpm.service; enabled; preset: enabled)
+     Active: active (running) since Tue 2024-06-04 04:20:29 UTC; 1min 39s ago
+       Docs: man:php-fpm8.3(8)
+    Process: 9850 ExecStartPost=/usr/lib/php/php-fpm-socket-helper install /run/php/php-fpm.sock /etc/php/8.3/fpm/pool.d/www.conf 83 (code=exited, status=0/SUCCESS)
+   Main PID: 9846 (php-fpm8.3)
+     Status: "Processes active: 0, idle: 2, Requests: 0, slow: 0, Traffic: 0req/sec"
+      Tasks: 3 (limit: 526)
+     Memory: 8.3M (peak: 8.8M)
+        CPU: 55ms
+     CGroup: /system.slice/php8.3-fpm.service
+             ├─9846 "php-fpm: master process (/etc/php/8.3/fpm/php-fpm.conf)"
+             ├─9848 "php-fpm: pool www"
+             └─9849 "php-fpm: pool www"
 
-Mar 29 07:13:52 ip-172-31-36-76 systemd[1]: php8.1-fpm.service: Deactivated succ>
-Mar 29 07:13:52 ip-172-31-36-76 systemd[1]: Stopped The PHP 8.1 FastCGI Process >
-Mar 29 07:13:52 ip-172-31-36-76 systemd[1]: Starting The PHP 8.1 FastCGI Process>
-Mar 29 07:13:52 ip-172-31-36-76 systemd[1]: Started The PHP 8.1 FastCGI Proces
+Jun 04 04:20:29 ip-172-31-32-171 systemd[1]: Starting php8.3-fpm.service - The PHP 8.3 FastCGI Process Manager...
+Jun 04 04:20:29 ip-172-31-32-171 systemd[1]: Started php8.3-fpm.service - The PHP 8.3 FastCGI Process Manager.
 ```
 
 ### php-fpmのプロセスはいくつ起動してる？
 
-出力によると、`php8.1-fpm` サービスにはメインのプロセス（マスタープロセス）が 1 つと、`pool www` として実行されている子プロセスが 2 つあります。したがって、合計で 3 つのプロセスが起動しています。これは、`CGroup` セクションに表示されている以下の行から確認できます。
+出力によると、`php8.3-fpm` サービスにはメインのプロセス（マスタープロセス）が 1 つと、`pool www` として実行されている子プロセスが 2 つあります。したがって、合計で 3 つのプロセスが起動しています。これは、`CGroup` セクションに表示されている以下の行から確認できます。
 
 ```sh
-             ├─22932 "php-fpm: master process (/etc/php/8.1/fpm/php-fpm.conf)" ">
-             ├─22933 "php-fpm: pool www" "" "" "" "" "" "" "" "" "" "" "" "" "" >
-             └─22934 "php-fpm: pool www" "" "" "" "" "" "" "" "" "" "" "" "" "" >
+CGroup: /system.slice/php8.3-fpm.service
+             ├─9846 "php-fpm: master process (/etc/php/8.3/fpm/php-fpm.conf)"
+             ├─9848 "php-fpm: pool www"
+             └─9849 "php-fpm: pool www"
 ```
 
 ### php-fpm の設定ファイルはどこにある？
 
-`php-fpm` の設定ファイルのパスは、マスタープロセスの記述に明示的に記載されています。これは `/etc/php/8.1/fpm/php-fpm.conf` です。これが `php-fpm` のメインの設定ファイルであり、`php-fpm` の動作やプール設定などをカスタマイズする際に編集します。
+`php-fpm` の設定ファイルのパスは、マスタープロセスの記述に明示的に記載されています。これは `/etc/php/8.3/fpm/php-fpm.conf` です。これが `php-fpm` のメインの設定ファイルであり、`php-fpm` の動作やプール設定などをカスタマイズする際に編集します。
 
 ```sh
-             ├─22932 "php-fpm: master process (/etc/php/8.1/fpm/php-fpm.conf)" ">
+             ├─9846 "php-fpm: master process (/etc/php/8.3/fpm/php-fpm.conf)"
 ```
 
-このパスから、PHP 8.1 用の `php-fpm` の設定ファイルが `/etc/php/8.1/fpm/` ディレクトリ内にあり、ファイル名は `php-fpm.conf` であることがわかります。この情報をもとに、必要に応じて `php-fpm` の設定を調整できます。
+このパスから、PHP 8.3 用の `php-fpm` の設定ファイルが `/etc/php/8.3/fpm/` ディレクトリ内にあり、ファイル名は `php-fpm.conf` であることがわかります。この情報をもとに、必要に応じて `php-fpm` の設定を調整できます。
 
 ### 設定ファイルを開いてみよう
 
 確認した設定ファイルを開いてみましょう。
 
 ```terminal
-$ cat /etc/php/8.1/fpm/php-fpm.conf
+$ cat /etc/php/8.3/fpm/php-fpm.conf
 ;;;;;;;;;;;;;;;;;;;;;
 ; FPM Configuration ;
 ;;;;;;;;;;;;;;;;;;;;;
@@ -161,14 +147,14 @@ $ cat /etc/php/8.1/fpm/php-fpm.conf
 ; Default Value: none
 ; Warning: if you change the value here, you need to modify systemd
 ; service PIDFile= setting to match the value here.
-pid = /run/php/php8.1-fpm.pid
+pid = /run/php/php8.3-fpm.pid
 
 ; Error log file
 ; If it's set to "syslog", log is sent to syslogd instead of being written
 ; into a local file.
 ; Note: the default prefix is /var
 ; Default Value: log/php-fpm.log
-error_log = /var/log/php8.1-fpm.log
+error_log = /var/log/php8.3-fpm.log
 
 ; syslog_facility is used to specify what type of program is logging the
 ; message. This lets syslogd specify that messages from different facilities
@@ -287,7 +273,7 @@ error_log = /var/log/php8.1-fpm.log
 ; Relative path can also be used. They will be prefixed by:
 ;  - the global prefix if it's been set (-p argument)
 ;  - /usr otherwise
-include=/etc/php/8.1/fpm/pool.d/*.conf
+include=/etc/php/8.3/fpm/pool.d/*.conf
 
 ```
 
@@ -306,20 +292,20 @@ include=/etc/php/8.1/fpm/pool.d/*.conf
 この質問は、`php-fpm` がどのソケットファイルを使ってリッスンしているかを特定することに関連しています。具体的な場所は、`php-fpm` のプール設定ファイル (`*.conf`) 内で指定されます。以下は、設定ファイルの探索方法とソケットファイルの位置の確認方法です：
 
 ```sh
-include=/etc/php/8.1/fpm/pool.d/*.conf
+include=/etc/php/8.3/fpm/pool.d/*.conf
 ```
 
-このディレクティブは、`/etc/php/8.1/fpm/pool.d/` ディレクトリ内のすべての `.conf` ファイルをインクルードすることを示しています。ソケットファイルの設定は、これらのプール設定ファイルに記述されています。
+このディレクティブは、`/etc/php/8.3/fpm/pool.d/` ディレクトリ内のすべての `.conf` ファイルをインクルードすることを示しています。ソケットファイルの設定は、これらのプール設定ファイルに記述されています。
 
 プール設定ファイルを確認して、`php-fpm` がリッスンしているソケットファイルまたはポートを特定します。以下のコマンドを使って、プール設定ファイルを確認できます。
 
 ```terminal
-$ ls /etc/php/8.1/fpm/pool.d/
+$ ls /etc/php/8.3/fpm/pool.d/
 www.conf
-$ cat /etc/php/8.1/fpm/pool.d/www.conf | grep "^listen ="
-listen = /run/php/php8.1-fpm.sock
+$ cat /etc/php/8.3/fpm/pool.d/www.conf | grep "^listen ="
+listen = /run/php/php8.3-fpm.sock
 ```
 
-この設定は、`php-fpm` が UNIX ドメインソケット `/run/php/php8.1-fpm.sock` を使用してリッスンしていることを意味します。ウェブサーバー（Apache や Nginx など）は、PHP コンテンツを処理するためにこのソケットファイル経由で `php-fpm` にリクエストを送信するように設定する必要があります。
+この設定は、`php-fpm` が UNIX ドメインソケット `/run/php/php8.3-fpm.sock` を使用してリッスンしていることを意味します。ウェブサーバー（Apache や Nginx など）は、PHP コンテンツを処理するためにこのソケットファイル経由で `php-fpm` にリクエストを送信するように設定する必要があります。
 
-以上から、`php-fpm` がリッスンしているソケットファイルの場所は `/run/php/php8.1-fpm.sock` と特定できます。
+以上から、`php-fpm` がリッスンしているソケットファイルの場所は `/run/php/php8.3-fpm.sock` と特定できます。

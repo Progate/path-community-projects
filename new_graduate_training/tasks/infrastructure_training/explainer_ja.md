@@ -151,7 +151,7 @@ $ sudo systemctl disable apache2
 ディレクトリの内容を表示するコマンド。ファイルやディレクトリの一覧を表示する。
 
 ```terminal
-$ ls /etc/php/8.1/fpm/pool.d/
+$ ls /etc/php/8.3/fpm/pool.d/
 ```
 
 ### cat
@@ -159,7 +159,7 @@ $ ls /etc/php/8.1/fpm/pool.d/
 ファイルの内容を表示するコマンド。ファイルの内容を表示する際に使用する。
 
 ```terminal
-$ cat /etc/php/8.1/fpm/php-fpm.conf
+$ cat /etc/php/8.3/fpm/php-fpm.conf
 ```
 
 ### nginx

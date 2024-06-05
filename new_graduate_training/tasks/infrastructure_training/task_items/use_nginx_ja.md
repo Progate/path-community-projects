@@ -8,10 +8,6 @@ nginx をインストールするには、以下のコマンドを実行しま�
 $ sudo apt install nginx
 ```
 
-インストール時に下記のような画面が表示される場合があるので、デフォルトの選択肢で OK します。
-
-- <img width="580" alt="image" src="https://github.com/Progate/path-community-projects/assets/26600620/823ea2a0-ed40-40bf-bf2c-bb9c0a692b88">
-
 ### nginxでphp-fpmにリバースプロキシしてみよう
 
 リバースプロキシとは、クライアントからのリクエストを別のサーバーに転送する仕組みのことです。nginx を使用して、PHP リクエストを `php-fpm` にリバースプロキシできます。
@@ -33,8 +29,8 @@ $ sudo apt install nginx
         root /var/www/html;
 
         location / {
-            fastcgi_pass unix:/run/php/php8.1-fpm.sock;
-            fastcgi_index index.php;
+            fastcgi_pass unix:/run/php/php8.3-fpm.sock;
+            fastcgi_index test.php;
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         }
@@ -130,8 +126,8 @@ $ sudo apt install nginx
 
 `http://php.aws` でアクセスしてみましょう。Apatche のデフォルトのウェルカムページではなく、PHP の情報が表示されるはずです。
 
-SERVER_SOFTWARE の値が `Apache/2.4.52 (Ubuntu)` ではなく、`nginx/1.18.0` になっていることを確認してください。
+SERVER_SOFTWARE の値が `Apache/2.4.58 (Ubuntu)` ではなく、`nginx/1.24.0` になっていることを確認してください。
 
 ```php
-["SERVER_SOFTWARE"]=> string(12) "nginx/1.18.0"
+["SERVER_SOFTWARE"]=> string(12) "nginx/1.24.0"
 ```

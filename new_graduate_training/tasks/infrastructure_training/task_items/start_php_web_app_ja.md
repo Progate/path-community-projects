@@ -97,10 +97,10 @@ index.html
 
 次は PHP ファイルを配置して、PHP の実行結果をブラウザからアクセスしてみましょう。その際、`SERVER_SOFTWARE` の値を確認します。
 
-1. index.php を作成し、以下のコードを記述します。`vi` や `nano` などのエディタを使用して、index.php ファイルを作成します。
+1. test.php を作成し、以下のコードを記述します。`vi` や `nano` などのエディタを使用して、test.php ファイルを作成します。
 
     ```terminal
-    $ vi index.php
+    $ vi test.php
     ```
 
     ```php
@@ -112,29 +112,29 @@ index.html
     :wq
     ```
 
-2. index.php を `/var/www/html` ディレクトリに配置します。
+2. test.php を `/var/www/html` ディレクトリに配置します。
 
     ```terminal
-    $ sudo mv index.php /var/www/html
+    $ sudo mv test.php /var/www/html
     ```
 
 3. ブラウザでアクセスして、`SERVER_SOFTWARE` の値を確認します。
 
-    - `http://[IPアドレス もしくは Public DNS の値]/index.php`
+    - `http://[IPアドレス もしくは Public DNS の値]/test.php`
 
     例えば、以下のような結果が表示されます。
 
     ```php
     array(32) { ["HTTP_HOST"]=> string(14) "xxx.xxx.xxx.xxx" ["HTTP_CONNECTION"]=> string(10) "keep-alive" ["HTTP_CACHE_CONTROL"]=> string(9) "max-age=0" ["HTTP_UPGRADE_INSECURE_REQUESTS"]=> string(1) "1" ["HTTP_USER_AGENT"]=> string(117) "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" ["HTTP_ACCEPT"]=> string(96) "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8" ["HTTP_SEC_GPC"]=> string(1) "1" ["HTTP_ACCEPT_LANGUAGE"]=> string(8) "en-US,en" ["HTTP_ACCEPT_ENCODING"]=> string(13) "gzip, deflate" ["PATH"]=> string(70) "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin" ["SERVER_SIGNATURE"]=> string(75) "
-    Apache/2.4.52 (Ubuntu) Server at xxx.xxx.xxx.xxx Port 80
-    " ["SERVER_SOFTWARE"]=> string(22) "Apache/2.4.52 (Ubuntu)" ["SERVER_NAME"]=> string(14) "xxx.xxx.xxx.xxx" ["SERVER_ADDR"]=> string(12) "172.31.36.76" ["SERVER_PORT"]=> string(2) "80" ["REMOTE_ADDR"]=> string(14) "133.106.241.38" ["DOCUMENT_ROOT"]=> string(13) "/var/www/html" ["REQUEST_SCHEME"]=> string(4) "http" ["CONTEXT_PREFIX"]=> string(0) "" ["CONTEXT_DOCUMENT_ROOT"]=> string(13) "/var/www/html" ["SERVER_ADMIN"]=> string(19) "webmaster@localhost" ["SCRIPT_FILENAME"]=> string(23) "/var/www/html/index.php" ["REMOTE_PORT"]=> string(5) "50368" ["GATEWAY_INTERFACE"]=> string(7) "CGI/1.1" ["SERVER_PROTOCOL"]=> string(8) "HTTP/1.1" ["REQUEST_METHOD"]=> string(3) "GET" ["QUERY_STRING"]=> string(0) "" ["REQUEST_URI"]=> string(10) "/index.php" ["SCRIPT_NAME"]=> string(10) "/index.php" ["PHP_SELF"]=> string(10) "/index.php" ["REQUEST_TIME_FLOAT"]=> float(1711695446.444052) ["REQUEST_TIME"]=> int(1711695446) }
+    Apache/2.4.58 (Ubuntu) Server at xxx.xxx.xxx.xxx Port 80
+    " ["SERVER_SOFTWARE"]=> string(22) "Apache/2.4.58 (Ubuntu)" ["SERVER_NAME"]=> string(14) "xxx.xxx.xxx.xxx" ["SERVER_ADDR"]=> string(12) "172.31.36.76" ["SERVER_PORT"]=> string(2) "80" ["REMOTE_ADDR"]=> string(14) "133.106.241.38" ["DOCUMENT_ROOT"]=> string(13) "/var/www/html" ["REQUEST_SCHEME"]=> string(4) "http" ["CONTEXT_PREFIX"]=> string(0) "" ["CONTEXT_DOCUMENT_ROOT"]=> string(13) "/var/www/html" ["SERVER_ADMIN"]=> string(19) "webmaster@localhost" ["SCRIPT_FILENAME"]=> string(23) "/var/www/html/test.php" ["REMOTE_PORT"]=> string(5) "50368" ["GATEWAY_INTERFACE"]=> string(7) "CGI/1.1" ["SERVER_PROTOCOL"]=> string(8) "HTTP/1.1" ["REQUEST_METHOD"]=> string(3) "GET" ["QUERY_STRING"]=> string(0) "" ["REQUEST_URI"]=> string(10) "/test.php" ["SCRIPT_NAME"]=> string(10) "/test.php" ["PHP_SELF"]=> string(10) "/test.php" ["REQUEST_TIME_FLOAT"]=> float(1711695446.444052) ["REQUEST_TIME"]=> int(1711695446) }
 
     ```
 
-    この結果から、`SERVER_SOFTWARE` の値が `Apache/2.4.52 (Ubuntu)` であることがわかります。これは、Apache ウェブサーバーが現在実行中であることを示しています。
+    この結果から、`SERVER_SOFTWARE` の値が `Apache/2.4.58 (Ubuntu)` であることがわかります。これは、Apache ウェブサーバーが現在実行中であることを示しています。
 
     ```php
-    ["SERVER_SOFTWARE"]=> string(22) "Apache/2.4.52 (Ubuntu)"
+    ["SERVER_SOFTWARE"]=> string(22) "Apache/2.4.58 (Ubuntu)"
     ```
 
 ### 判定のためにサーバー情報を.envファイルに記載しよう

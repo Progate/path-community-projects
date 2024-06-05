@@ -4,12 +4,12 @@
 
 Nginx はアクセスログを使用してリクエストの情報を記録します。
 
-まずは既存のアクセスログを確認してみましょう。Nginx のアクセスログは通常、`/var/log/nginx/access.log` に保存されています。以下のコマンドを使用して、アクセスログの内容を表示します。
+まずは既存のアクセスログを確認してみましょう。Nginx のアクセスログは通常、`/var/log/nginx/access.log` に保存されています。`tail` コマンドを使用して、アクセスログの内容を表示します。
 
 ```terminal
-$ cat /var/log/nginx/access.log 
+$ tail /var/log/nginx/access.log 
 # 例
-192.168.1.1 - - [31/Mar/2024:00:10:40 +0000] "GET /index.php HTTP/1.1" 200 804 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46"
+192.168.1.1 - - [31/Mar/2024:00:10:40 +0000] "GET /test.php HTTP/1.1" 200 804 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46"
 ```
 
 各フィールドは次のとおりです:
@@ -18,11 +18,34 @@ $ cat /var/log/nginx/access.log
 - **-**: RFC 1413 アイデンティティ（ここでは使用されていない）
 - **-**: ユーザー名（HTTP 認証がない場合は使用されない）
 - **[31/Mar/2024:00:10:40 +0000]**: リクエストが行われた日時
-- **GET /index.php HTTP/1.1**: リクエストメソッド、URI、HTTP プロトコルのバージョン
+- **GET /test.php HTTP/1.1**: リクエストメソッド、URI、HTTP プロトコルのバージョン
 - **200**: HTTP ステータスコード
 - **804**: レスポンスで送信されたバイト数（ヘッダーを除く）
 - **-**: リファラーURL（直接アクセスの場合は-）
 - **Mozilla/5.0 ... Edg/90.0.818.46**: ユーザーエージェント文字列
+
+<details>
+  <summary>なぜ cat ではなく tail を使うべきなのか</summary>
+
+`tail` コマンドは、ファイルの末尾部分だけを表示します。デフォルトでは、最後の 10 行を表示しますが、オプションを使うことで表示する行数を指定できます。
+
+`tail` を使うべき理由は次のとおりです:
+
+1. **ログファイルのサイズが大きい場合のパフォーマンス**:
+   - ログファイルは非常に大きくなることが多く、`cat` コマンドを使うとすべての行が表示されてしまい、処理が遅くなることがあります。
+   - `tail` コマンドを使うことで、必要な末尾の数行だけを表示するため、パフォーマンスが向上します。
+2. **最新のログエントリの確認**:
+   - 一般的に、ログファイルの確認は最新のエントリを見るために行います。`tail` コマンドはファイルの末尾を表示するため、最新のログエントリをすぐに確認できます。
+3. **継続的なモニタリング**:
+   - `tail` には `-f` オプションがあり、これを使うと新しいログエントリが追加されるたびにリアルタイムで表示されます。これは継続的なログの監視に非常に便利です。
+
+   ```terminal
+   $ tail -f /var/log/nginx/access.log
+   ```
+
+このように、`cat` よりも `tail` を使うほうが、特に大きなログファイルを扱う場合や最新のログエントリを確認する場合に適しています。
+
+</details>
 
 デフォルトではレスポンスタイム（リクエストの処理にかかった時間）は含まれていません。レスポンスタイムをアクセスログに含めることで、リクエストの処理時間を監視し、パフォーマンスの問題を特定するのに役立ちます。
 
@@ -30,16 +53,24 @@ Nginx では、`$request_time` 変数を使用してレスポンスタイムを�
 
 レスポンスタイムをアクセスログに含めるには、Nginx の設定ファイルでログフォーマットをカスタマイズします。これを行うには、まず `http` コンテキストまたは `server` コンテキスト内で `log_format` ディレクティブを定義し、その後、使用するアクセスログの定義にこのフォーマットを適用します。
 
-1. カスタムログフォーマットの定義
-
-    まず、以下のように設定することで、レスポンスタイムを含むカスタムログフォーマットを定義しましょう。今回はフォーマットに `request_time` を含め、それを `ltsv` という名前で定義しています。
+1. Nginx の設定ファイルを開く
 
     ```terminal
     $ sudo vi /etc/nginx/nginx.conf
     ```
 
+2. カスタムログフォーマットの定義
+
+    まず、以下のように設定することで、レスポンスタイムを含むカスタムログフォーマットを定義しましょう。今回はフォーマットに `request_time` を含め、それを `ltsv` という名前で定義しています。
+
     ```nginx
     http {
+        
+        # その他の設定...
+
+        ##
+        # Logging Settings
+        ##
         log_format ltsv 'time:$time_iso8601\t'
                     'remote_addr:$remote_addr\t'
                     'request_method:$request_method\t'
@@ -62,18 +93,18 @@ Nginx では、`$request_time` 変数を使用してレスポンスタイムを�
     }
     ```
 
-2. カスタムログフォーマットの使用
+3. カスタムログフォーマットの使用
 
     次に、定義したログフォーマットを使用するように Nginx のサーバーブロックまたはロケーションブロックを設定します。`access_log` ディレクティブを使用して、ログファイルのパスと使用するログフォーマット（この例では `ltsv`）を指定します。
 
-    ```terminal
-    $ sudo vi /etc/nginx/sites-available/php.conf
-    ```
-
     ```nginx
-    server {
-        listen 80;
-        server_name php.aws;
+    http {
+
+        # その他の設定...
+        
+        ##
+        # Logging Settings
+        ##
 
         access_log /var/log/nginx/access.log ltsv;
 
@@ -83,14 +114,14 @@ Nginx では、`$request_time` 変数を使用してレスポンスタイムを�
 
     この設定により、`/var/log/nginx/access.log` に出力されるログエントリには、リクエストの処理時間が秒単位で含まれるようになります。
 
-3. 変更の適用
+4. 変更の適用
 
     設定を変更した後は、設定の構文が正しいことを確認するために `sudo nginx -t` を実行し、問題がなければ `sudo systemctl reload nginx` または `sudo nginx -s reload` で Nginx を再読み込みして設定を適用します。
 
     これで、Nginx のアクセスログにレスポンスタイムが含まれるようになり、パフォーマンスの監視やトラブルシューティングに役立てることができます。
 
     ```sh
-    time:2024-03-31T00:10:40+00:00	remote_addr:185.224.128.43	request_method:GET	request_length:425	request_uri:/	https:	uri:/index.php	query_string:-	status:200	bytes_sent:1007	body_bytes_sent:804	referer:-	useragent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46	forwardedfor:-	request_time:0.000	upstream_response_time:0.000	host:54.238.193.253
+    time:2024-03-31T00:10:40+00:00	remote_addr:185.224.128.43	request_method:GET	request_length:425	request_uri:/	https:	uri:/test.php	query_string:-	status:200	bytes_sent:1007	body_bytes_sent:804	referer:-	useragent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46	forwardedfor:-	request_time:0.000	upstream_response_time:0.000	host:54.238.193.253
 
     ```
 
@@ -102,7 +133,7 @@ Nginx では、`$request_time` 変数を使用してレスポンスタイムを�
     - **request_length**: リクエストの全長（ヘッダーを含むバイト数）。
     - **request_uri**: リクエストされた完全な URI（この場合はルート `/`）。
     - **https**: HTTPS を使用している場合、ここに値が入る（ここでは空白、つまり HTTP リクエスト）。
-    - **uri**: リクエストされた URI のパス（この場合は `/index.php`）。
+    - **uri**: リクエストされた URI のパス（この場合は `/test.php`）。
     - **query_string**: クエリストリング（存在しない場合は `-`）。
     - **status**: HTTP レスポンスのステータスコード（`200` は成功を意味する）。
     - **bytes_sent**: クライアントへ送信された全バイト数（ヘッダーを含む）。
@@ -116,7 +147,7 @@ Nginx では、`$request_time` 変数を使用してレスポンスタイムを�
 
     このログフォーマットは、Web サーバーのパフォーマンスモニタリングやトラブルシューティングに役立つ詳細な情報を提供します。リクエストの処理時間、バイト数、使用されたメソッド、ステータスコードなどから、サーバーの状態や特定のリクエストの問題を把握できます。
 
-4. 設定が正しいことを確認するために、`sudo nginx -t` コマンドを実行します。
+5. 設定が正しいことを確認するために、`sudo nginx -t` コマンドを実行します。
 
     ```terminal
     $ sudo nginx -t
@@ -124,7 +155,7 @@ Nginx では、`$request_time` 変数を使用してレスポンスタイムを�
     nginx: configuration file /etc/nginx/nginx.conf test is successful
     ```
 
-5. 設定に問題がなければ、`sudo systemctl reload nginx` コマンドで Nginx を再読み込みします。
+6. 設定に問題がなければ、`sudo systemctl reload nginx` コマンドで Nginx を再読み込みします。
 
     ```terminal
     $ sudo systemctl reload nginx
