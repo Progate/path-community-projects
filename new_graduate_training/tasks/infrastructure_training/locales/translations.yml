@@ -3,7 +3,7 @@ infrastructure_training:
     name:
       ja: Progateコミュニティ
   title:
-    ja: インフラ研修
+    ja: EC2 に PHP のアプリケーションをデプロイしてみよう
   task_items:
     aws_instance:
       title:

@@ -3,7 +3,7 @@
   "situationId": "W5HRkGVjRsa8fzXi53YOU",
   "type": {
     "value": "STUDY",
-    "category": ["container_cloud"]
+    "category": ["cloud"]
   },
   "title": "infrastructure_training.title",
   "translationFiles": [

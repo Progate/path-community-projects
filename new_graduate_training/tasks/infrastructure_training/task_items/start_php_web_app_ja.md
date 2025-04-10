@@ -87,9 +87,9 @@ index.html
 
 1. パブリックアドレスの確認
    - EC2 ダッシュボードに移動して、インスタンスのパブリック IPv4 アドレスを確認します。
-     - ![image](https://github.com/Progate/path-community-projects/assets/26600620/e60638f9-0a7c-4ee0-a3a6-c511de6121b5)
+     - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_instance_summary.png'})
 2. ブラウザでアクセス
-   - このとき、HTTPS ではなく HTTP でアクセスすることに気をつけましょう。
+   - このとき、`HTTPS` ではなく `HTTP` でアクセスすることに気をつけましょう。
 3. デフォルトの Apache ウェルカムページが表示されるはずです。
    - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/apache2_server.png'})
 
@@ -136,11 +136,3 @@ index.html
     ```php
     ["SERVER_SOFTWARE"]=> string(22) "Apache/2.4.58 (Ubuntu)"
     ```
-
-### 判定のためにサーバー情報を.envファイルに記載しよう
-
-次のステップに進む前に、`questions.sh` ファイルに情報を記載してください。判定するために使用します。
-
-```sh
-ANSWER_CHECK_SERVER_STATUS_PUBLIC_DNS="ec2-xxx-xxx-xxx-xxx.ap-northeast-1.compute.amazonaws.com"
-```

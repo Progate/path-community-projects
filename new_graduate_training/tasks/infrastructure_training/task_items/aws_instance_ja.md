@@ -2,7 +2,9 @@
 
 ### はじめに
 
-AWS のアップデートなどにより、説明にある画面と異なる可能性があります。お気づきのことがありましたら、コミュニティの[Discord](https://discord.com/invite/pK7KVFefCA)にアクセスし、フィードバックをいただけると大変助かります。
+AWS のアップデートなどにより、実際にある画面と説明にある画面が異なる可能性があります。
+
+お気づきのことがありましたら、コミュニティの[Discord](https://discord.com/invite/pK7KVFefCA)にアクセスし、フィードバックをいただけると大変助かります。
 
 ### AWSアカウント作成
 
@@ -15,33 +17,38 @@ AWS のアップデートなどにより、説明にある画面と異なる可�
 EC2 インスタンスを作成します。以下の手順に従って、インスタンスを作成してください。
 
 1. **AWSマネジメントコンソールにログイン**: AWS マネジメントコンソールにログインします。アカウント情報を入力してログインしてください。
-2. **EC2のダッシュボードにアクセス**: EC2 とは Elastic Compute Cloud の略で、AWS の仮想サーバーサービスです。コンソール画面の上部にある「サービス」から「EC2」を見つけるか、検索機能をつかって EC2 のダッシュボードへ移動しましょう。
-3. **インスタンスの作成**:「インスタンスの作成」を選択します。「インスタンス」とは仮想サーバーのことを指しており、このボタンを押すことにより、新しい仮想サーバーを立ち上げる設定画面へ移動できます。
-   - ![image](https://storage.googleapis.com/zenn-user-upload/cb295726ca6f-20240328.png)
-4. **インスタンスの設定**: インスタンスを次のとおりに設定をします。
-   - **名前とタグの設定**: 自分にわかりやすい適当な名前をつけてください。（例：`infra-practice`）
-   - **AMIの選択**: Ubuntu Server 24.04 LTS を選択します。AMI（Amazon Machine Image）は、EC2 インスタンスを起動するためのテンプレートです。
+
+2. **EC2のダッシュボードにアクセス**: `EC2` とは `Elastic Compute Cloud` の略で、AWS の仮想サーバーサービスです。コンソール画面の上部にある「サービス」から「EC2」を見つけるか、検索機能をつかって EC2 のダッシュボードへ移動してください。
+
+3. **インスタンスの作成ページに移動**:「インスタンスの作成」ボタンを押してください。「インスタンス」とは仮想サーバーのことを指しており、このボタンを押すことにより、新しい仮想サーバーを立ち上げる設定画面へ移動できます。
+   - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_launch_instance.png'})
+
+4. **インスタンスの設定/作成**: インスタンスを以下のように設定/作成します。
+   - **名前とタグの設定**: 自分にわかりやすい適当な名前をつけてください。（例：`Infra Training`）
+   - **AMIの選択**: `Ubuntu Server 24.04 LTS` を選択します。AMI（Amazon Machine Image）は、EC2 インスタンスを起動するためのテンプレートです。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_image.png'})
-   - **インスタンスタイプの選択**: t2.nano を選択します。料金が安いため、学習やテストに適しています。サインアップ後の最初の 1 年間の無料枠を使っている場合は、t2.micro を選択しても問題ありません。
+   - **インスタンスタイプの選択**: `t2.nano` を選択します。料金が安いため、学習やテストに適しています。サインアップ後の最初の 1 年間の無料枠を使っている場合は、`t2.micro` を選択しても問題ありません。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_instance_type.png'})
-   - **キーペアの設定**:「新しいキーペアを作成」を押し、以下の画像を参考にしながらキーペアを作成して、キーペアをダウンロードしましょう。キーペアはインスタンスに SSH 接続するために必要です。
+   - **キーペアの設定**:「新しいキーペアを作成」を押し、以下の画像を参考にキーペアを作成/ダウンロードしましょう。キーペアはインスタンスに SSH 接続するために必要です。（例：`my_key`）
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_ssh_key.png'})
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_ssh_key2.png'})
-     - ダウンロードしたファイルは後で SSH 接続に利用します。以下のコマンドを参考にしながら、鍵を `~/.ssh` ディレクトリに移動しておきましょう。ダウンロードした `*.pem` ファイルは非常に重要なものなので、他のユーザーに渡したり、公開したりしないようにしてください。
+     - ダウンロードしたファイルは後で SSH 接続に利用します。以下のコマンドを参考に鍵を `~/.ssh` ディレクトリに移動しておきましょう。ダウンロードした `xxx.pem` ファイルは非常に重要なものなので、他のユーザーに渡したり、公開したりしないようにしてください。
 
        ```terminal
-       $ mv ~/Downloads/my_key.pem ~/.ssh/
+       $ mv ~/Downloads/xxx.pem ~/.ssh/
        ```
 
-   - **セキュリティグループの設定**: Network settings で新しいセキュリティグループを作成し、SSH（ポート 22）と HTTP（ポート 80）のアクセスを許可します。
-     - スクリーンショットでは、Anywhere(`0.0.0.0/0`) で設定していますが、この設定では世界中からアクセスが可能です。制限をかけたい場合は、 `My IP` アドレスからのみ許可するなどの設定が可能です。
+   - **セキュリティグループの設定**: ネットワーク設定で「セキュリティグループを作成」を選択し、SSH（ポート 22）と HTTP（ポート 80）のアクセスを許可します。
+     - 以下の画像では、Anywhere(`0.0.0.0/0`) で設定していますが、この設定では世界中からアクセスが可能となってしまいます。制限をかけたい場合は、 `My IP` アドレスからのみ許可するなどの設定が可能です。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_network_settings.png'})
-   - **インスタンスの確認**: 設定が完了したら Launch instance を選択します。インスタンスを起動するための最終確認画面が表示されます。
+   - **インスタンスの作成**: 設定が問題ないことを確認したら、「インスタンスの作成」を選択しインスタンスを起動します。
      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_summary.png'})
+   - **インスタンスの確認**: EC2 のインスタンス一覧を確認し、以下の画像のように実行状態のインスタンスが起動できていれば OK です。
+     - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/ec2_launch_success.png'})
 
 ### SSH接続
 
-ローカルのホスト PC から AWS EC2 インスタンスへ SSH 接続してみましょう。下記の手順で行います。
+ローカルのホスト PC から、先ほど作成した AWS EC2 インスタンスへ SSH 接続してみましょう。以下の手順で行います。
 
 1. **SSH鍵のパーミッション設定**: 最初に、ローカルにダウンロードした SSH 鍵のパーミッションを安全な設定に変更する必要があります。これは、他のユーザーによる鍵ファイルの読み取りを防ぐためです。ターミナルを開き、ダウンロードした pem ファイルに対して次のコマンドを実行します。（パスとファイル名は自分の環境に合わせてください）
 
@@ -52,32 +59,32 @@ EC2 インスタンスを作成します。以下の手順に従って、イン�
 2. **SSHコマンドをつかって接続**: SSH 鍵のパーミッションを設定した後、SSH コマンドを使用して EC2 インスタンスに接続します。接続するには、EC2 インスタンスのパブリック DNS またはパブリック IP アドレスが必要です。この情報は、AWS マネジメントコンソールの EC2 ダッシュボードから取得できます。
    1. 作成したインスタンスを選択
    2. 「Connect to instance」もしくは「接続」をクリック
-   3. SSH client を選択し、接続までの手順とコマンドを確認
-      - ![image](https://github.com/Progate/path-community-projects/assets/26600620/a3b62049-df17-472a-933b-5732df3f5e14)
+   3. 「SSH client」を選択し、接続までの手順とコマンドを確認
+      - ![image]($progatepath{ASSET_URL, 'contents/resources/new_graduate_training/tasks/infrastructure_training/connect_to_instance.png'})
 
-    接続コマンドの基本的な形式は以下の通りです。
+    以下のコマンドでインスタンスに SSH 接続してください。
+    ここで、`~/.ssh/xxx.pem` はローカルの SSH 鍵ファイルのパス、`your-instance-public-dns` はインスタンスのパブリック DNS またはパブリック IP アドレスに置き換えてください。
 
     ```terminal
     $ ssh -i ~/.ssh/xxx.pem ubuntu@your-instance-public-dns.compute.amazonaws.com
     ```
 
-    ここで、`~/.ssh/xxx.pem` はローカルの SSH 鍵ファイルのパス、`your-instance-public-dns` はインスタンスのパブリック DNS またはパブリック IP アドレスに置き換えてください。
-
    - `Are you sure you want to continue connecting (yes/no/[fingerprint])?` と聞かれたら `Yes` と入力
    - うまくいけば下記のように EC2 内の Ubuntu にログインでき、ターミナルで操作できるようになります。
 
       ```terminal
+      Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-1024-aws x86_64)
 
-      * Documentation:  https://help.ubuntu.com
-      * Management:     https://landscape.canonical.com
-      * Support:        https://ubuntu.com/pro
+        * Documentation:  https://help.ubuntu.com
+        * Management:     https://landscape.canonical.com
+        * Support:        https://ubuntu.com/pro
 
-        System information as of Thu Mar 28 13:46:21 UTC 2024
+        System information as of Wed Apr  9 07:58:17 UTC 2025
 
-        System load:  0.0               Processes:             96
-        Usage of /:   20.4% of 7.57GB   Users logged in:       0
-        Memory usage: 42%               IPv4 address for eth0: 172.31.36.76
-        Swap usage:   0%
+          System load:  0.0               Processes:             105
+          Usage of /:   25.0% of 6.71GB   Users logged in:       0
+          Memory usage: 41%               IPv4 address for enX0: 172.31.34.243
+          Swap usage:   0%
 
       Expanded Security Maintenance for Applications is not enabled.
 
@@ -101,7 +108,7 @@ EC2 インスタンスを作成します。以下の手順に従って、イン�
       To run a command as administrator (user "root"), use "sudo <command>".
       See "man sudo_root" for details.
 
-      ubuntu@ip-172-31-36-76:~$ 
+      ubuntu@ip-172-31-34-243:~$
       ```
 
 ### .ssh/config ファイルの設定
@@ -112,7 +119,7 @@ EC2 インスタンスを作成します。以下の手順に従って、イン�
 Host infra-training
   User ubuntu
   Port 22
-  IdentityFile ~/.ssh/my_key.pem
+  IdentityFile ~/.ssh/xxx.pem
   HostName 先ほどコピーしたパブリックIPアドレスかDNS名
   ServerAliveInterval 5
   ServerAliveCountMax 12
@@ -129,7 +136,7 @@ $ ssh infra-training
 次のステップに進む前に、`questions.sh` ファイルに SSH 接続情報を記載してください。正常に接続できるかどうかを判定するために使用します。
 
 ```sh
-KEY_PATH="~/.ssh/xxxx.pem"
+KEY_PATH="~/.ssh/xxx.pem"
 AWS_EC2_HOST="your-instance-public-dns.compute.amazonaws.com"
 ```
 
